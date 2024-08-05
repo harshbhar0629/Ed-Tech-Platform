@@ -26,6 +26,10 @@ const userSchema = new Schema({
         enum: ["Admin", "Student", "Instructor"],
         required: true,
     },
+    contactNumber: {
+        type: String,
+        trim: true,
+    },
     additionalDetails: {
         type: Schema.Types.ObjectId,
         ref: "Profile",
