@@ -6,6 +6,8 @@ const otpGenerator = require("otp-generator");
 const Otp = require("../models/Otp.js");
 const bcrypt = require("bcrypt");
 const Profile = require("../models/Profile.js");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 // send otp
 exports.sendOtp = async (req, res) => {
@@ -165,3 +167,80 @@ exports.signUp = async (req, res) => {
 		});
 	}
 };
+
+// login
+exports.login = async (req, res) => {
+	try {
+		// get data from req ki body
+		const { email, password } = req.body;
+
+		// validation data
+		if (!email || !password) {
+			return res.status(403).json({
+				success: false,
+				message: "All fields are required. Please try again",
+			});
+		}
+
+		// check user exist or not
+		const user = await User.findOne({ email }).populate("additionalDetails");
+		if (!user) {
+			return res.status(401).json({
+				success: false,
+				message: "User is not registered. Please signup first!",
+			});
+		}
+
+		// match password
+		if (!(await bcrypt.compare(password, user.password))) {
+			return res.status(401).json({
+				success: false,
+				message: "Please enter correct password!",
+			});
+		}
+
+		const payload = {
+			email: user.email,
+			id: user._id,
+			role: user.accountType,
+		};
+
+		// generate JWT
+		const token = jwt.sign(payload, process.env.JWT_SECRET, {
+			expiresIn: "2h",
+		});
+
+		user._doc.token = token;
+		user._doc.password = undefined;
+
+		// create cookie and response send
+		const options = {
+			expiresIn: new Date.now() + 3 * 24 * 60 * 60 * 1000,
+			httpOnly: true
+		}
+
+		res.cookie("token", token, options).status(200).json({
+			success: true,
+			token,
+			user,
+			message: "Logged in successfully!",
+		});
+		//
+	} catch (err) {
+		console.log("Error in login");
+		console.log(err.message);
+		return res.status(500).json({
+			success: false,
+			message: "Login failure, Please try again!"
+		});
+	}
+};
+
+exports.changePassword = async (req, res) => {
+	// get data from req body
+	// get oldPassword, newPassword, confirmNewPassword
+	// validation
+	// update password in dbs
+	// send-mail password updated 
+	// return res 
+}
