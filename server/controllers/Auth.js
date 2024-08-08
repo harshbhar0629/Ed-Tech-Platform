@@ -43,7 +43,7 @@ exports.sendOtp = async (req, res) => {
 			result = await OTP.findOne({ otp: otp });
 		}
 
-		console.log("Otp generated");
+		console.log("Otp generated", otp);
 
 		const otpPayload = { email, otp };
 		// create an entry in db
@@ -54,6 +54,7 @@ exports.sendOtp = async (req, res) => {
 			success: true,
 			message: "Otp sent successfully",
 		});
+		//
 	} catch (err) {
 		console.log("Error in sending OTP!!");
 		console.log(err.message);
@@ -131,7 +132,7 @@ exports.signUp = async (req, res) => {
 		}
 
 		// hash password
-		const hashPassword = await bcrypt.hash(10, password);
+		const hashPassword = bcrypt.hash(10, password);
 
 		// first create user profile
 		const profileDetails = await Profile.create({
@@ -241,7 +242,7 @@ exports.login = async (req, res) => {
 exports.changePassword = async (req, res) => {
 	try {
 		// Get user data from req.user
-		const userDetails = await User.findById(req.user.id);
+		const userDetails = await User.findById(req.user._id);
 
 		// Get old password, new password, and confirm new password from req.body
 		const { oldPassword, newPassword } = req.body;

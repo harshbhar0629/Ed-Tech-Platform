@@ -12,7 +12,6 @@ const tagSchema = new Schema({
     },
     course: {
         type: Schema.Types.ObjectId,
-        required: true,
         ref: "Course"
     }
 });
