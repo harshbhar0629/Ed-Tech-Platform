@@ -242,7 +242,7 @@ exports.login = async (req, res) => {
 exports.changePassword = async (req, res) => {
 	try {
 		// Get user data from req.user
-		const userDetails = await User.findById(req.user._id);
+		const userDetails = await User.findById(req.user.id);
 
 		// Get old password, new password, and confirm new password from req.body
 		const { oldPassword, newPassword } = req.body;
