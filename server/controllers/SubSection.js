@@ -1,9 +1,9 @@
 /** @format */
 
-const cloudinary = require("cloudinary").v2;
 const SubSection = require("../models/SubSection.js");
 const Section = require("../models/Section.js");
 const { uploadImageToCloudinary } = require("../utils/imageUploader.js");
+require("dotenv").config();
 
 // create subsection
 exports.createSubsection = async (req, res) => {

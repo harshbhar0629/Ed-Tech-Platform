@@ -4,6 +4,7 @@ const Course = require("../models/Course.js");
 const Category = require("../models/Category.js");
 const User = require("../models/User.js");
 const { uploadImageToCloudinary } = require("../utils/imageUploader.js");
+require("dotenv").config();
 
 // create course
 exports.createCourse = async (req, res) => {
