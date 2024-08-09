@@ -81,7 +81,7 @@ exports.updateSection = async (req, res) => {
 exports.deleteSection = async (req, res) => {
     try {
         // get id
-        const { sectionId } = req.body;
+        const { sectionId } = req.params;
         
         // search section using id and delete
         await Section.findByIdAndDelete(sectionId);
@@ -92,11 +92,11 @@ exports.deleteSection = async (req, res) => {
         });
 		//
 	} catch (err) {
-		console.log("Error in updation of section: ");
+		console.log("Error in deletion of section: ");
 		console.log(err.message);
 		return res.status(500).json({
 			success: false,
-			message: "Unable to update section, Please try again!",
+			message: "Unable to delete section, Please try again!",
 		});
 	}
 };
