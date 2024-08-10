@@ -1,13 +1,13 @@
 /** @format */
 
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 
-const ratingAndReviewSchema = new Schema({
+// Define the RatingAndReview schema
+const ratingAndReviewSchema = new mongoose.Schema({
 	user: {
-		type: Schema.Types.ObjectId,
-		ref: "User",
+		type: mongoose.Schema.Types.ObjectId,
 		required: true,
+		ref: "user",
 	},
 	rating: {
 		type: Number,
@@ -16,8 +16,14 @@ const ratingAndReviewSchema = new Schema({
 	review: {
 		type: String,
 		required: true,
-		trim: true,
+	},
+	course: {
+		type: mongoose.Schema.Types.ObjectId,
+		required: true,
+		ref: "Course",
+		index: true,
 	},
 });
 
+// Export the RatingAndReview model
 module.exports = mongoose.model("RatingAndReview", ratingAndReviewSchema);

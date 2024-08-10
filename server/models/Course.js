@@ -38,13 +38,14 @@ const coursesSchema = new mongoose.Schema({
 	},
 	category: {
 		type: mongoose.Schema.Types.ObjectId,
+		// required: true,
 		ref: "Category",
 	},
-	studentsEnroled: [
+	studentsEnrolled: [
 		{
 			type: mongoose.Schema.Types.ObjectId,
 			required: true,
-			ref: "User",
+			ref: "user",
 		},
 	],
 	instructions: {
@@ -54,7 +55,10 @@ const coursesSchema = new mongoose.Schema({
 		type: String,
 		enum: ["Draft", "Published"],
 	},
-	createdAt: { type: Date, default: Date.now },
+	createdAt: {
+		type: Date,
+		default: Date.now,
+	},
 });
 
 // Export the Courses model
