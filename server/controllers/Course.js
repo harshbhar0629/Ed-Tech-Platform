@@ -8,6 +8,7 @@ const User = require("../models/User");
 const { uploadImageToCloudinary } = require("../utils/imageUploader");
 const CourseProgress = require("../models/CourseProgress");
 const { convertSecondsToDuration } = require("../utils/secToDuration");
+
 // Function to create a new course
 exports.createCourse = async (req, res) => {
 	try {
@@ -54,6 +55,7 @@ exports.createCourse = async (req, res) => {
 		if (!status || status === undefined) {
 			status = "Draft";
 		}
+
 		// Check if the user is an instructor
 		const instructorDetails = await User.findById(userId, {
 			accountType: "Instructor",
@@ -74,11 +76,13 @@ exports.createCourse = async (req, res) => {
 				message: "Category Details Not Found",
 			});
 		}
+
 		// Upload the Thumbnail to Cloudinary
 		const thumbnailImage = await uploadImageToCloudinary(
 			thumbnail,
 			process.env.FOLDER_NAME
 		);
+
 		console.log(thumbnailImage);
 		// Create a new course with the given details
 		const newCourse = await Course.create({
@@ -106,6 +110,7 @@ exports.createCourse = async (req, res) => {
 			},
 			{ new: true }
 		);
+
 		// Add the new course to the Categories
 		const categoryDetails2 = await Category.findByIdAndUpdate(
 			{ _id: category },
@@ -116,6 +121,7 @@ exports.createCourse = async (req, res) => {
 			},
 			{ new: true }
 		);
+
 		console.log("HEREEEEEEEE", categoryDetails2);
 		// Return the new course and a success message
 		res.status(200).json({
@@ -123,6 +129,7 @@ exports.createCourse = async (req, res) => {
 			data: newCourse,
 			message: "Course Created Successfully",
 		});
+		//
 	} catch (error) {
 		// Handle any errors that occur during the creation of the course
 		console.error(error);
@@ -133,6 +140,7 @@ exports.createCourse = async (req, res) => {
 		});
 	}
 };
+
 // Edit Course Details
 exports.editCourse = async (req, res) => {
 	try {
@@ -283,6 +291,7 @@ exports.getAllCourses = async (req, res) => {
 //     })
 //   }
 // }
+
 exports.getCourseDetails = async (req, res) => {
 	try {
 		const { courseId } = req.body;
@@ -332,18 +341,21 @@ exports.getCourseDetails = async (req, res) => {
 
 		return res.status(200).json({
 			success: true,
+			message: "Course Details found successfully",
 			data: {
 				courseDetails,
 				totalDuration,
 			},
 		});
 	} catch (error) {
+		console.log("Error in fetching course!");
 		return res.status(500).json({
 			success: false,
 			message: error.message,
 		});
 	}
 };
+
 exports.getFullCourseDetails = async (req, res) => {
 	try {
 		const { courseId } = req.body;
