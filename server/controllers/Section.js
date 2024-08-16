@@ -2,8 +2,7 @@
 
 const Section = require("../models/Section");
 const Course = require("../models/Course");
-const SubSection = require("../models/SubSection");
-
+const SubSection = require("../models/Subsection");
 // CREATE a new section
 exports.createSection = async (req, res) => {
 	try {
@@ -64,7 +63,6 @@ exports.updateSection = async (req, res) => {
 			{ sectionName },
 			{ new: true }
 		);
-
 		const course = await Course.findById(courseId)
 			.populate({
 				path: "courseContent",
@@ -73,7 +71,7 @@ exports.updateSection = async (req, res) => {
 				},
 			})
 			.exec();
-
+		console.log(course);
 		res.status(200).json({
 			success: true,
 			message: section,
@@ -84,6 +82,7 @@ exports.updateSection = async (req, res) => {
 		res.status(500).json({
 			success: false,
 			message: "Internal server error",
+			error: error.message,
 		});
 	}
 };
@@ -102,16 +101,15 @@ exports.deleteSection = async (req, res) => {
 		if (!section) {
 			return res.status(404).json({
 				success: false,
-				message: "Section not Found",
+				message: "Section not found",
 			});
 		}
-
-		//delete sub section
+		// Delete the associated subsections
 		await SubSection.deleteMany({ _id: { $in: section.subSection } });
 
 		await Section.findByIdAndDelete(sectionId);
 
-		//find the updated course and return
+		// find the updated course and return it
 		const course = await Course.findById(courseId)
 			.populate({
 				path: "courseContent",
@@ -131,6 +129,7 @@ exports.deleteSection = async (req, res) => {
 		res.status(500).json({
 			success: false,
 			message: "Internal server error",
+			error: error.message,
 		});
 	}
 };
