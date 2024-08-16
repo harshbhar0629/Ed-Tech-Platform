@@ -5,16 +5,16 @@ const express = require("express");
 const router = express.Router();
 const {
 	capturePayment,
-	// verifySignature,
+	
 	verifyPayment,
 	sendPaymentSuccessEmail,
-} = require("../controllers/payments");
+} = require("../controllers/Payment");
 const {
 	auth,
 	isInstructor,
 	isStudent,
 	isAdmin,
-} = require("../middleware/auth");
+} = require("../middlewares/auth");
 router.post("/capturePayment", auth, isStudent, capturePayment);
 router.post("/verifyPayment", auth, isStudent, verifyPayment);
 router.post(

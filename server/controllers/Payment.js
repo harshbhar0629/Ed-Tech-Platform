@@ -11,7 +11,7 @@ const {
 } = require("../mail/templates/courseEnrollmentEmail");
 const {
 	paymentSuccessEmail,
-} = require("../mail/templates/paymentSuccessEmail");
+} = require("../mail/templates/paymentSuccessfulEmail");
 const CourseProgress = require("../models/CourseProgress");
 
 // Capture the payment and initiate the Razorpay order
