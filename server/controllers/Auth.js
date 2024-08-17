@@ -57,15 +57,6 @@ exports.signup = async (req, res) => {
 			});
 		}
 
-		// Check if user already exists
-		const existingUser = await User.findOne({ email });
-		if (existingUser) {
-			return res.status(400).json({
-				success: false,
-				message: "User already exists. Please sign in to continue.",
-			});
-		}
-
 		// Find the most recent OTP for the email
 		const response = await OTP.find({ email }).sort({ createdAt: -1 }).limit(1);
 		console.log(response);
@@ -81,6 +72,15 @@ exports.signup = async (req, res) => {
 			return res.status(400).json({
 				success: false,
 				message: "The OTP is not valid",
+			});
+		}
+
+		// Check if user already exists
+		const existingUser = await User.findOne({ email });
+		if (existingUser) {
+			return res.status(400).json({
+				success: false,
+				message: "User already exists. Please login to continue.",
 			});
 		}
 
@@ -160,7 +160,7 @@ exports.login = async (req, res) => {
 				{
 					email: user.email,
 					id: user._id,
-					role: user.role,
+					accountType: user.accountType,
 				},
 				process.env.JWT_SECRET,
 				{
@@ -247,10 +247,12 @@ exports.sendotp = async (req, res) => {
 			message: `OTP Sent Successfully!`,
 			otp,
 		});
-
 	} catch (error) {
 		console.log(error.message);
-		return res.status(500).json({ success: false, error: error.message });
+		return res.status(500).json({
+			success: false,
+			error: error.message,
+		});
 	}
 };
 
@@ -268,6 +270,7 @@ exports.changePassword = async (req, res) => {
 			oldPassword,
 			userDetails.password
 		);
+
 		if (!isPasswordMatch) {
 			// If old password does not match, return a 401 (Unauthorized) error
 			return res
@@ -296,7 +299,7 @@ exports.changePassword = async (req, res) => {
 			console.log("Email sent successfully:", emailResponse);
 		} catch (error) {
 			// If there's an error sending the email, log the error and return a 500 (Internal Server Error) error
-			console.error("Error occurred while sending email:", error);
+			console.error("Error occurred while sending email:\n", error.message);
 			return res.status(500).json({
 				success: false,
 				message: "Error occurred while sending email",
@@ -305,12 +308,14 @@ exports.changePassword = async (req, res) => {
 		}
 
 		// Return success response
-		return res
-			.status(200)
-			.json({ success: true, message: "Password updated successfully" });
+		return res.status(200).json({
+			success: true,
+			message: "Password updated successfully",
+		});
+		//
 	} catch (error) {
 		// If there's an error updating the password, log the error and return a 500 (Internal Server Error) error
-		console.error("Error occurred while updating password:", error);
+		console.error("Error occurred while updating password:\n", error.message);
 		return res.status(500).json({
 			success: false,
 			message: "Error occurred while updating password",

@@ -106,7 +106,10 @@ exports.verifyPayment = async (req, res) => {
 		return res.status(200).json({ success: true, message: "Payment Verified" });
 	}
 
-	return res.status(200).json({ success: false, message: "Payment Failed" });
+	return res.status(200).json({
+		success: false,
+		message: "Payment Failed",
+	});
 };
 
 // Send Payment Success Email
@@ -145,12 +148,10 @@ exports.sendPaymentSuccessEmail = async (req, res) => {
 // enroll the student in the courses
 const enrollStudents = async (courses, userId, res) => {
 	if (!courses || !userId) {
-		return res
-			.status(400)
-			.json({
-				success: false,
-				message: "Please Provide Course ID and User ID",
-			});
+		return res.status(400).json({
+			success: false,
+			message: "Please Provide Course ID and User ID",
+		});
 	}
 
 	for (const courseId of courses) {
@@ -199,8 +200,11 @@ const enrollStudents = async (courses, userId, res) => {
 
 			console.log("Email sent successfully: ", emailResponse.response);
 		} catch (error) {
-			console.log(error);
-			return res.status(400).json({ success: false, error: error.message });
+			console.log(error.message);
+			return res.status(400).json({
+				success: false,
+				error: error.message,
+			});
 		}
 	}
 };

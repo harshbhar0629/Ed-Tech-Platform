@@ -18,7 +18,10 @@ exports.auth = async (req, res, next) => {
 
 		// If JWT is missing, return 401 Unauthorized response
 		if (!token) {
-			return res.status(401).json({ success: false, message: `Token Missing` });
+			return res.status(401).json({
+				success: false,
+				message: `Token Missing`,
+			});
 		}
 
 		try {
@@ -29,9 +32,10 @@ exports.auth = async (req, res, next) => {
 			req.user = decode;
 		} catch (error) {
 			// If JWT verification fails, return 401 Unauthorized response
-			return res
-				.status(401)
-				.json({ success: false, message: "token is invalid" });
+			return res.status(401).json({
+				success: false,
+				message: "token is invalid",
+			});
 		}
 
 		// If JWT is valid, move on to the next middleware or request handler
@@ -44,6 +48,7 @@ exports.auth = async (req, res, next) => {
 		});
 	}
 };
+
 exports.isStudent = async (req, res, next) => {
 	try {
 		const userDetails = await User.findOne({ email: req.user.email });
@@ -56,11 +61,13 @@ exports.isStudent = async (req, res, next) => {
 		}
 		next();
 	} catch (error) {
-		return res
-			.status(500)
-			.json({ success: false, message: `User Role Can't be Verified` });
+		return res.status(500).json({
+			success: false,
+			message: `User Role Can't be Verified`,
+		});
 	}
 };
+
 exports.isAdmin = async (req, res, next) => {
 	try {
 		const userDetails = await User.findOne({ email: req.user.email });
@@ -78,6 +85,7 @@ exports.isAdmin = async (req, res, next) => {
 			.json({ success: false, message: `User Role Can't be Verified` });
 	}
 };
+
 exports.isInstructor = async (req, res, next) => {
 	try {
 		const userDetails = await User.findOne({ email: req.user.email });

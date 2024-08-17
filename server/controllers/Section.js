@@ -3,6 +3,7 @@
 const Section = require("../models/Section");
 const Course = require("../models/Course");
 const SubSection = require("../models/Subsection");
+
 // CREATE a new section
 exports.createSection = async (req, res) => {
 	try {
@@ -13,7 +14,7 @@ exports.createSection = async (req, res) => {
 		if (!sectionName || !courseId) {
 			return res.status(400).json({
 				success: false,
-				message: "Missing required properties",
+				message: "Section Name and Course both are required!",
 			});
 		}
 
@@ -44,8 +45,10 @@ exports.createSection = async (req, res) => {
 			message: "Section created successfully",
 			updatedCourse,
 		});
+		// 
 	} catch (error) {
 		// Handle errors
+		console.log(error.message);
 		res.status(500).json({
 			success: false,
 			message: "Internal server error",
@@ -63,6 +66,7 @@ exports.updateSection = async (req, res) => {
 			{ sectionName },
 			{ new: true }
 		);
+
 		const course = await Course.findById(courseId)
 			.populate({
 				path: "courseContent",
@@ -71,14 +75,16 @@ exports.updateSection = async (req, res) => {
 				},
 			})
 			.exec();
+		
 		console.log(course);
 		res.status(200).json({
 			success: true,
 			message: section,
 			data: course,
 		});
+		// 
 	} catch (error) {
-		console.error("Error updating section:", error);
+		console.log("Error updating section:\n", error.message);
 		res.status(500).json({
 			success: false,
 			message: "Internal server error",
@@ -96,6 +102,7 @@ exports.deleteSection = async (req, res) => {
 				courseContent: sectionId,
 			},
 		});
+
 		const section = await Section.findById(sectionId);
 		console.log(sectionId, courseId);
 		if (!section) {
@@ -104,6 +111,7 @@ exports.deleteSection = async (req, res) => {
 				message: "Section not found",
 			});
 		}
+
 		// Delete the associated subsections
 		await SubSection.deleteMany({ _id: { $in: section.subSection } });
 
@@ -124,8 +132,9 @@ exports.deleteSection = async (req, res) => {
 			message: "Section deleted",
 			data: course,
 		});
+		// 
 	} catch (error) {
-		console.error("Error deleting section:", error);
+		console.log("Error deleting section: \n", error.message);
 		res.status(500).json({
 			success: false,
 			message: "Internal server error",

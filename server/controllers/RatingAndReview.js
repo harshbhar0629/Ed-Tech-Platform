@@ -59,7 +59,7 @@ exports.createRating = async (req, res) => {
 			ratingReview,
 		});
 	} catch (error) {
-		console.error(error);
+		console.log(error.message);
 		return res.status(500).json({
 			success: false,
 			message: "Internal server error",
@@ -98,7 +98,7 @@ exports.getAverageRating = async (req, res) => {
 		// If no ratings are found, return 0 as the default rating
 		return res.status(200).json({ success: true, averageRating: 0 });
 	} catch (error) {
-		console.error(error);
+		console.log(error.message);
 		return res.status(500).json({
 			success: false,
 			message: "Failed to retrieve the rating for the course",
@@ -127,7 +127,7 @@ exports.getAllRatingReview = async (req, res) => {
 			data: allReviews,
 		});
 	} catch (error) {
-		console.error(error);
+		console.log(error.message);
 		return res.status(500).json({
 			success: false,
 			message: "Failed to retrieve the rating and review for the course",

@@ -68,7 +68,7 @@ exports.updateProfile = async (req, res) => {
 		});
 		//
 	} catch (error) {
-		console.log(error);
+		console.log(error.message);
 		return res.status(500).json({
 			success: false,
 			error: error.message,
@@ -112,7 +112,7 @@ exports.deleteAccount = async (req, res) => {
 		await CourseProgress.deleteMany({ userId: id });
 		//
 	} catch (error) {
-		console.log(error);
+		console.log(error.message);
 		res.status(500).json({
 			success: false,
 			message: "User Cannot be deleted successfully",
@@ -135,6 +135,7 @@ exports.getAllUserDetails = async (req, res) => {
 			data: userDetails,
 		});
 	} catch (error) {
+		console.log(error.message);
 		return res.status(500).json({
 			success: false,
 			message: error.message,
@@ -165,6 +166,7 @@ exports.updateDisplayPicture = async (req, res) => {
 			data: updatedProfile,
 		});
 	} catch (error) {
+		console.log(error.message);
 		return res.status(500).json({
 			success: false,
 			msg: "Error in updateDisplayPicture!",
@@ -235,6 +237,7 @@ exports.getEnrolledCourses = async (req, res) => {
 			data: userDetails.courses,
 		});
 	} catch (error) {
+		console.log(error.message);
 		return res.status(500).json({
 			success: false,
 			message: error.message,
@@ -265,7 +268,10 @@ exports.instructorDashboard = async (req, res) => {
 
 		res.status(200).json({ courses: courseData });
 	} catch (error) {
-		console.error(error);
-		res.status(500).json({ message: "Server Error" });
+		console.log(error.message);
+		res.status(500).json({
+			success: false,
+			message: "Server Error",
+		});
 	}
 };
