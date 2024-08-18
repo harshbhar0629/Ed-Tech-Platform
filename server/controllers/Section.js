@@ -45,7 +45,7 @@ exports.createSection = async (req, res) => {
 			message: "Section created successfully",
 			updatedCourse,
 		});
-		// 
+		//
 	} catch (error) {
 		// Handle errors
 		console.log(error.message);
@@ -75,14 +75,14 @@ exports.updateSection = async (req, res) => {
 				},
 			})
 			.exec();
-		
+
 		console.log(course);
 		res.status(200).json({
 			success: true,
 			message: section,
 			data: course,
 		});
-		// 
+		//
 	} catch (error) {
 		console.log("Error updating section:\n", error.message);
 		res.status(500).json({
@@ -113,7 +113,11 @@ exports.deleteSection = async (req, res) => {
 		}
 
 		// Delete the associated subsections
-		await SubSection.deleteMany({ _id: { $in: section.subSection } });
+		await SubSection.deleteMany({
+			_id: {
+				$in: section.subSection,
+			},
+		});
 
 		await Section.findByIdAndDelete(sectionId);
 
@@ -132,7 +136,7 @@ exports.deleteSection = async (req, res) => {
 			message: "Section deleted",
 			data: course,
 		});
-		// 
+		//
 	} catch (error) {
 		console.log("Error deleting section: \n", error.message);
 		res.status(500).json({
