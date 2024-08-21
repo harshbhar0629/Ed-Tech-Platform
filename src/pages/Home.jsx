@@ -8,8 +8,8 @@ import HighlightText from "../components/core/HomePage/HighlightText";
 import CTAButton from "../components/core/HomePage/Button";
 import Banner from "../assets/Images/banner.mp4";
 import MovingCode from "../components/core/HomePage/MovingCode";
-import LearningLanguageSection from "../components/core/LearningLanguageSection";
-import TimelineSection from "../components/core/TimelineSection";
+import LearningLanguageSection from "../components/core/HomePage/LearningLanguageSection";
+import TimelineSection from "../components/core/HomePage/TimelineSection";
 
 const Home = () => {
 	return (
@@ -164,9 +164,9 @@ const Home = () => {
 						</div>
 						<div className="flex flex-col items-start gap-10 lg:w-[40%]">
 							<div className="text-[16px] font-bold">
-								The modern TechTreasure-Hub.com is the dictates its own terms. Today, to
-								be a competitive specialist requires more than professional
-								skills.
+								The modern TechTreasure-Hub.com is the dictates its own terms.
+								Today, to be a competitive specialist requires more than
+								professional skills.
 							</div>
 							<CTAButton
 								active={true}
