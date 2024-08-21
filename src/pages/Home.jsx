@@ -10,6 +10,9 @@ import Banner from "../assets/Images/banner.mp4";
 import MovingCode from "../components/core/HomePage/MovingCode";
 import LearningLanguageSection from "../components/core/HomePage/LearningLanguageSection";
 import TimelineSection from "../components/core/HomePage/TimelineSection";
+import InstructorSection from "../components/core/HomePage/InstructorSection";
+import Footer from "../components/common/Footer";
+import ExploreMore from "../components/core/HomePage/ExploreMore";
 
 const Home = () => {
 	return (
@@ -126,17 +129,17 @@ const Home = () => {
 					/>
 				</div>
 				{/* Explore More Section */}
-				{/* <ExploreMore /> */}
+				<ExploreMore />			
 			</div>
 
 			{/* Section-2 */}
 			<div className="bg-pure-greys-5 text-richblack-700 ">
-				<div className="homepage_bg h-[320px]">
+				<div className="homepage_bg h-[340px]">
 					{/* explore course category */}
 
-					<div className="mx-auto flex w-11/12  max-w-maxContent flex-col items-center justify-between gap-8">
+					<div className="mx-auto flex w-11/12  max-w-maxContent flex-col items-center justify-between gap-8 ">
 						<div className="lg:h-[150px] sm:h-[100px]"></div>
-						<div className="flex flex-row gap-7  text-white lg:mt-32">
+						<div className="flex flex-row gap-7  text-white lg:mt-32 ">
 							<CTAButton
 								active={true}
 								linkto={"/signup"}>
@@ -180,6 +183,20 @@ const Home = () => {
 				<TimelineSection />
 				<LearningLanguageSection />
 			</div>
+
+			{/* Section-3 */}
+			<div className="relative mx-auto my-20 flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8 bg-richblack-900 text-white">
+				{/* Instructor Section */}
+				<InstructorSection />
+				
+				{/* Review heading */}
+				<h2 className="text-center text-4xl font-semibold mt-8">
+					Review from other Learners
+				</h2>
+			</div>
+
+			{/* Footer section */}
+			<Footer />
 		</div>
 	);
 };

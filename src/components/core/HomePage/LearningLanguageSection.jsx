@@ -9,7 +9,7 @@ import Plan_your_lessons from "../../../assets/Images/Plan_your_lessons.png";
 
 const LearningLanguageSection = () => {
 	return (
-		<div>
+		<div >
 			<div className="text-4xl font-semibold text-center my-10 ">
 				Your swiss knife for
 				<HighlightText text={"Learning any language"} />
@@ -36,7 +36,7 @@ const LearningLanguageSection = () => {
 				</div>
 			</div>
 
-			<div className="w-fit mx-auto lg:mb-20 mb-8 -mt-5">
+			<div className="w-fit mx-auto lg:mb-20 mb-8 -mt-5 pt-16 pb-[70px]">
 				<CTAButton
 					active={true}
 					linkto={"/signup"}>
