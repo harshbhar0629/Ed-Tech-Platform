@@ -1,16 +1,20 @@
 /** @format */
 
 import React from "react";
+import "../App.css";
 import { HiArrowNarrowRight } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import HighlightText from "../components/core/HomePage/HighlightText";
 import CTAButton from "../components/core/HomePage/Button";
 import Banner from "../assets/Images/banner.mp4";
 import MovingCode from "../components/core/HomePage/MovingCode";
+import LearningLanguageSection from "../components/core/LearningLanguageSection";
+import TimelineSection from "../components/core/TimelineSection";
 
 const Home = () => {
 	return (
 		<div>
+			{/* Section-1 */}
 			<div className="relative mx-auto flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8 text-white">
 				{/* Become a Instructor Button */}
 				<Link to={"/signup"}>
@@ -123,6 +127,58 @@ const Home = () => {
 				</div>
 				{/* Explore More Section */}
 				{/* <ExploreMore /> */}
+			</div>
+
+			{/* Section-2 */}
+			<div className="bg-pure-greys-5 text-richblack-700 ">
+				<div className="homepage_bg h-[320px]">
+					{/* explore course category */}
+
+					<div className="mx-auto flex w-11/12  max-w-maxContent flex-col items-center justify-between gap-8">
+						<div className="lg:h-[150px] sm:h-[100px]"></div>
+						<div className="flex flex-row gap-7  text-white lg:mt-32">
+							<CTAButton
+								active={true}
+								linkto={"/signup"}>
+								<div className="flex items-center gap-2">
+									Explore Full Catalog
+									<HiArrowNarrowRight />
+								</div>
+							</CTAButton>
+
+							<CTAButton
+								active={false}
+								linkto={"/login"}>
+								Learn More
+							</CTAButton>
+						</div>
+					</div>
+				</div>
+
+				<div className="mx-auto flex w-11/12 max-w-maxContent mb-10 flex-col items-center justify-between gap-8 ">
+					{/* Job that is in Demand - Section 1 */}
+					<div className="mb-10 mt-[-100px] flex flex-col justify-between gap-7 lg:mt-20 lg:flex-row lg:gap-0 w-[90%]">
+						<div className="text-4xl font-semibold lg:w-[45%] ">
+							Get the skills you need for a{" "}
+							<HighlightText text={"Job that is in demand."} />
+						</div>
+						<div className="flex flex-col items-start gap-10 lg:w-[40%]">
+							<div className="text-[16px] font-bold">
+								The modern TechTreasure-Hub.com is the dictates its own terms. Today, to
+								be a competitive specialist requires more than professional
+								skills.
+							</div>
+							<CTAButton
+								active={true}
+								linkto={"/signup"}>
+								<div className="">Learn More</div>
+							</CTAButton>
+						</div>
+					</div>
+				</div>
+
+				<TimelineSection />
+				<LearningLanguageSection />
 			</div>
 		</div>
 	);

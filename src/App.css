@@ -119,6 +119,7 @@ width: 372.95px;
   );
   /* backdrop-filter: blur(26px); */
 }
+
 .homepage_bg {
   z-index:-10;
   background: url("../src/assets/Images/bghome.svg");
