@@ -1,18 +1,19 @@
-import './App.css';
-import Home from './pages/Home';
-import { Routes, Route } from 'react-router-dom';
+/** @format */
+
+import "./App.css";
+import Home from "./pages/Home";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/common/Navbar";
 
 function App() {
-    
-  return (
+	return (
 		<div className=" w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
+			<Navbar />
 			<Routes>
 				<Route
 					path="/"
 					element={<Home />}></Route>
-				
 			</Routes>
-
 		</div>
 	);
 }

@@ -25,7 +25,7 @@ exports.createCategory = async (req, res) => {
 			success: true,
 			message: "Categorys Created Successfully",
 		});
-		// 
+		//
 	} catch (error) {
 		return res.status(500).json({
 			success: true,
@@ -41,7 +41,7 @@ exports.showAllCategories = async (req, res) => {
 			success: true,
 			data: allCategorys,
 		});
-		// 
+		//
 	} catch (error) {
 		console.log(error.message);
 		return res.status(500).json({
@@ -105,7 +105,7 @@ exports.categoryPageDetails = async (req, res) => {
 				match: { status: "Published" },
 			})
 			.exec();
-		
+
 		// sort course with most buyer
 		const allCourses = allCategories.flatMap((category) => category.courses);
 		const mostSellingCourses = allCourses
