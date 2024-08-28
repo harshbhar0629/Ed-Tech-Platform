@@ -2,7 +2,6 @@
 
 import React from "react";
 import CTAButton from "./Button";
-import HighlightText from "./HighlightText";
 import { HiArrowNarrowRight } from "react-icons/hi"; import {TypeAnimation} from "react-type-animation";
 
 const MovingCode = ({

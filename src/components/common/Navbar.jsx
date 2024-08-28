@@ -8,32 +8,56 @@ import { Link, matchPath } from "react-router-dom";
 import logo from "../../assets/Logo/Logo-Full-Light.png";
 import { NavbarLinks } from "../../data/navbar-links.js";
 import { useLocation } from "react-router-dom";
-import { apiConnector } from "../../services/apiConnector.js";
-import { categories } from "../../services/apis.js";
+// import { apiConnector } from "../../services/apiConnector.js";
+// import { categories } from "../../services/apis.js";
+import { BsChevronDown } from "react-icons/bs";
+import ProfileDropdown from "../core/Auth/ProfileDropdown.jsx";
+
+const subLinks = [
+  {
+    title: "Python",
+    link: "/catalog/python",
+  },
+  {
+    title: "javascript",
+    link: "/catalog/javascript",
+  },
+  {
+    title: "web-development",
+    link: "/catalog/web-development",
+  },
+  {
+    title: "Android Development",
+    link: "/catalog/Android Development",
+  },
+];
+
 
 const Navbar = () => {
 	const location = useLocation();
 	const matchRoute = (route) => {
-		matchPath(location.pathname, { path: route });
+		return matchPath({ path: route }, location.pathname);
 	};
-	const [subLink, setSubLinks] = useState([]);
+	// const [subLinks, setSubLinks] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const { token } = useSelector((state) => state.auth);
 	const { user } = useSelector((state) => state.profile);
 	const { totalItems } = useSelector((state) => state.cart);
 
-	useEffect(() => {
-		async () => {
-			try {
-				const res = await apiConnector("GET", categories.CATEGORIES_API);
-				console.log(res);
-				setSubLinks(res.data.data);
-			} catch (error) {
-				console.log("Could not fetch Categories.", error.message);
-			}
-			setLoading(false);
-		}
-	}, []);
+	// const fetchSubLinks = async () => {
+	// 	try {
+	// 		const res = await apiConnector("GET", categories.CATEGORIES_API);
+	// 		console.log(res.data);
+	// 		setSubLinks(res.data.data);
+	// 	} catch (error) {
+	// 		console.log("Could not fetch Categories.", error.message);
+	// 	}
+	// 	setLoading(false);
+	// };
+
+	// useEffect(() => {
+	// 	fetchSubLinks();
+	// }, []);
 
 	return (
 		<div
@@ -57,7 +81,7 @@ const Navbar = () => {
 							return (
 								<li key={index}>
 									{link.title === "Catalog" ? (
-										<li>
+										<div>
 											<div
 												className={`group relative flex cursor-pointer items-center gap-1 ${
 													matchRoute("/catalog/:catalogName")
@@ -71,8 +95,8 @@ const Navbar = () => {
 													<div className="absolute left-[50%] top-0 -z-10 h-6 w-6 translate-x-[80%] translate-y-[-40%] rotate-45 select-none rounded bg-richblack-5"></div>
 													{loading ? (
 														<p className="text-center">Loading...</p>
-													) : subLinks?.length ? (
-														<>
+													) : (subLinks?.length > 0) ? (
+														<div>
 															{subLinks
 																?.filter(
 																	(subLink) => subLink?.courses?.length > 0
@@ -88,13 +112,13 @@ const Navbar = () => {
 																		<p>{subLink.name}</p>
 																	</Link>
 																))}
-														</>
+														</div>
 													) : (
 														<p className="text-center">No Courses Found</p>
 													)}
 												</div>
 											</div>
-										</li>
+										</div>
 									) : (
 										<Link to={link?.path}>
 											<p
