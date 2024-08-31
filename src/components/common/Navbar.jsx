@@ -2,10 +2,10 @@
 
 import React from "react";
 import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, matchPath } from "react-router-dom";
-import logo from "../../assets/Logo/Logo-Full-Light.png";
+import logo from "../../assets/Logo/logo2.png";
 import { NavbarLinks } from "../../data/navbar-links.js";
 import { useLocation } from "react-router-dom";
 // import { apiConnector } from "../../services/apiConnector.js";
@@ -14,24 +14,23 @@ import { BsChevronDown } from "react-icons/bs";
 import ProfileDropdown from "../core/Auth/ProfileDropdown.jsx";
 
 const subLinks = [
-  {
-    title: "Python",
-    link: "/catalog/python",
-  },
-  {
-    title: "javascript",
-    link: "/catalog/javascript",
-  },
-  {
-    title: "web-development",
-    link: "/catalog/web-development",
-  },
-  {
-    title: "Android Development",
-    link: "/catalog/Android Development",
-  },
+	{
+		title: "Python",
+		link: "/catalog/python",
+	},
+	{
+		title: "Javascript",
+		link: "/catalog/javascript",
+	},
+	{
+		title: "Web-Development",
+		link: "/catalog/web-development",
+	},
+	{
+		title: "Android Development",
+		link: "/catalog/Android Development",
+	},
 ];
-
 
 const Navbar = () => {
 	const location = useLocation();
@@ -68,8 +67,8 @@ const Navbar = () => {
 					<img
 						src={logo}
 						alt="Logo"
-						width={160}
-						height={32}
+						width={180}
+						height={40}
 						loading="lazy"
 					/>
 				</Link>
@@ -95,24 +94,29 @@ const Navbar = () => {
 													<div className="absolute left-[50%] top-0 -z-10 h-6 w-6 translate-x-[80%] translate-y-[-40%] rotate-45 select-none rounded bg-richblack-5"></div>
 													{loading ? (
 														<p className="text-center">Loading...</p>
-													) : (subLinks?.length > 0) ? (
-														<div>
-															{subLinks
-																?.filter(
+													) : subLinks?.length > 0 ? (
+														<>
+															{
+																/* ?.filter(
 																	(subLink) => subLink?.courses?.length > 0
-																)
-																?.map((subLink, i) => (
+
+																	y content db k bd ayega abi db connection m dikkt h
+																	.split(" ")
+																	.join("-")
+																	.toLowerCase()
+																) */
+																subLinks?.map((subLink, i) => (
 																	<Link
-																		to={`/catalog/${subLink.name
-																			.split(" ")
-																			.join("-")
-																			.toLowerCase()}`}
-																		className="rounded-lg bg-transparent py-4 pl-4 hover:bg-richblack-50"
+																		to={`/catalog/${subLink.title}`}
+																		className="rounded-lg py-3  pl-2 hover:bg-richblack-500 hover:rounded-md  font-semibold "
 																		key={i}>
-																		<p>{subLink.name}</p>
+																		<p className="text-center flex flex-col items-center justify-center font-semibold  ">
+																			{subLink.title}
+																		</p>
 																	</Link>
-																))}
-														</div>
+																))
+															}
+														</>
 													) : (
 														<p className="text-center">No Courses Found</p>
 													)}
@@ -138,7 +142,7 @@ const Navbar = () => {
 				</nav>
 
 				{/* login signup and dashboard! */}
-				<div className="hidden md:flex items-center gap-x-4 ">
+				<div className="hidden md:flex lg:flex items-center gap-x-4 ">
 					{user && user?.accountType !== "Instructor" && (
 						<Link
 							to="/dashboard/cart"
