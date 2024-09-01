@@ -2,10 +2,14 @@
 
 import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
+import { login } from "../../../services/operations/authAPI";
 
 function LoginForm() {
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
 	const [formData, setFormData] = useState({
 		email: "",
 		password: "",
@@ -22,13 +26,18 @@ function LoginForm() {
 		}));
 	};
 
+	const handleOnSubmit = (e) => {
+		e.preventDefault();
+		dispatch(login(email, password, navigate));
+	};
+
 	return (
 		<form
-			// onSubmit={handleOnSubmit}
+			onSubmit={handleOnSubmit}
 			className="mt-6 flex w-full flex-col gap-y-4">
 			<label className="w-full">
-				<p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
-					Email Address <sup className="text-pink-200">*</sup>
+				<p className="mb-1 text-[0.875rem] leading-[1.375rem] font-semibold text-richblack-5">
+					Email Address <sup className="text-pink-200 font-semibold">*</sup>
 				</p>
 				<input
 					required
@@ -37,12 +46,12 @@ function LoginForm() {
 					value={email}
 					onChange={handleOnChange}
 					placeholder="Enter email address"
-					className="form-style w-full"
+					className="form-style  w-full font-semibold"
 				/>
 			</label>
 			<label className="relative">
-				<p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
-					Password <sup className="text-pink-200">*</sup>
+				<p className="mb-1 text-[0.875rem] leading-[1.375rem] font-semibold text-richblack-5">
+					Password <sup className="text-pink-200 font-semibold ">*</sup>
 				</p>
 				<input
 					required
@@ -51,7 +60,7 @@ function LoginForm() {
 					value={password}
 					onChange={handleOnChange}
 					placeholder="Enter Password"
-					className="form-style w-full !pr-10"
+					className="form-style w-full font-semibold !pr-10"
 				/>
 				<span
 					onClick={() => setShowPassword((prev) => !prev)}
@@ -69,14 +78,14 @@ function LoginForm() {
 					)}
 				</span>
 				<Link to="/forgot-password">
-					<p className="mt-1 ml-auto max-w-max text-xs text-blue-100">
+					<p className="mt-1 ml-auto max-w-max font-semibold text-xs text-blue-100">
 						Forgot Password
 					</p>
 				</Link>
 			</label>
 			<button
 				type="submit"
-				className="mt-6 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900">
+				className="mt-6 rounded-[8px] font-semibold bg-yellow-50 py-[8px] px-[12px] text-richblack-900">
 				Sign In
 			</button>
 		</form>

@@ -4,6 +4,8 @@ import "./App.css";
 import Home from "./pages/Home";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/common/Navbar";
+import Login from "./components/core/Auth/LoginForm";
+import Signup from "./components/core/Auth/SignupForm";
 
 function App() {
 	return (
@@ -13,6 +15,12 @@ function App() {
 				<Route
 					path="/"
 					element={<Home />}></Route>
+				<Route
+					path="login"
+					element={<Login />}></Route>
+				<Route
+					path="signup"
+					element={<Signup />}></Route>
 			</Routes>
 		</div>
 	);

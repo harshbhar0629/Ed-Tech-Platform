@@ -11,7 +11,7 @@ import { useLocation } from "react-router-dom";
 // import { apiConnector } from "../../services/apiConnector.js";
 // import { categories } from "../../services/apis.js";
 import { BsChevronDown } from "react-icons/bs";
-import ProfileDropdown from "../core/Auth/ProfileDropdown.jsx";
+import ProfileDropdown from "../../components/core/Auth/ProfileDropdown.jsx"
 
 const subLinks = [
 	{
@@ -157,18 +157,18 @@ const Navbar = () => {
 					)}
 
 					{/* login button logic */}
-					{token === null && (
+					{(token === null) && (
 						<Link to="/login">
-							<button className="rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100">
+							<button className="rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[7px] text-richblack-100 text-[12px]">
 								Log in
 							</button>
 						</Link>
 					)}
 
 					{/* signup button logic */}
-					{token === null && (
+					{(token === null) && (
 						<Link to="/signup">
-							<button className="rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100">
+							<button className="rounded-[8px] border text-[12px] border-richblack-700 bg-richblack-800 px-[12px] py-[7px] text-richblack-100">
 								Sign up
 							</button>
 						</Link>
