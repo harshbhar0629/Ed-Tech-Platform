@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 import { sendOtp } from "../../../services/operations/authAPI";
 import { setSignupData } from "../../../slices/authSlice";
-import { ACCOUNT_TYPE } from "../../../utils/constants";
-import Tab from "../../Common/Tab";
+import { ACCOUNT_TYPE } from "../../../utils/constant"
+import Tab from "../../common/Tab"
 
 function SignupForm() {
 	const navigate = useNavigate();
@@ -155,7 +155,7 @@ function SignupForm() {
 						/>
 						<span
 							onClick={() => setShowPassword((prev) => !prev)}
-							className="absolute right-3 top-[38px] z-[10] cursor-pointer">
+							className="absolute right-3 top-[32px] z-[10] cursor-pointer">
 							{showPassword ? (
 								<AiOutlineEyeInvisible
 									fontSize={24}
@@ -184,7 +184,7 @@ function SignupForm() {
 						/>
 						<span
 							onClick={() => setShowConfirmPassword((prev) => !prev)}
-							className="absolute right-3 top-[38px] z-[10] cursor-pointer">
+							className="absolute right-3 top-[32px] z-[10] cursor-pointer">
 							{showConfirmPassword ? (
 								<AiOutlineEyeInvisible
 									fontSize={24}
