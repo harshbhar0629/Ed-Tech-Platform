@@ -192,6 +192,9 @@ const Home = () => {
 				{/* Review heading */}
 				<h2 className="text-center text-4xl font-semibold mt-8">
 					Review from other Learners
+					<div className="mt-[20px] text-2xl bg-richblack-800 mx-auto px-5 rounded-md py-4 w-[200px]">
+						Pending...
+					</div>
 				</h2>
 			</div>
 
