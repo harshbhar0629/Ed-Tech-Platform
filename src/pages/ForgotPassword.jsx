@@ -59,7 +59,7 @@ const ForgotPassword = () => {
                         
 					<div>
 						<Link to="/login">
-							<p className="flex items-center gap-x-2 text-[0.85rem] text-richblack-100">
+							<p className="flex items-center gap-x-2 text-[0.85rem] text-richblack-100 mt-5">
 								<BiArrowBack /> Back To Login
 							</p>
 						</Link>
