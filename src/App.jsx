@@ -6,11 +6,11 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/common/Navbar";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import OpenRoute from "./components/core/Auth/OpenRoute"
+import OpenRoute from "./components/core/Auth/OpenRoute";
 import ForgotPassword from "./pages/ForgotPassword";
+import UpdatePassword from "./pages/UpdatePassword";
 
 function App() {
-
 	return (
 		<div className=" w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
 			<Navbar />
@@ -37,6 +37,13 @@ function App() {
 					element={
 						<OpenRoute>
 							<ForgotPassword />
+						</OpenRoute>
+					}></Route>
+				<Route
+					path="update-password/:id"
+					element={
+						<OpenRoute>
+							<UpdatePassword />
 						</OpenRoute>
 					}></Route>
 			</Routes>
