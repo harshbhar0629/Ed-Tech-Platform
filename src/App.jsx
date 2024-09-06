@@ -9,6 +9,7 @@ import Signup from "./pages/Signup";
 import OpenRoute from "./components/core/Auth/OpenRoute";
 import ForgotPassword from "./pages/ForgotPassword";
 import UpdatePassword from "./pages/UpdatePassword";
+import VerifyEmail from "./pages/VerifyEmail";
 
 function App() {
 	return (
@@ -33,17 +34,24 @@ function App() {
 						</OpenRoute>
 					}></Route>
 				<Route
-					path="forgot-password"
+					path="/forgot-password"
 					element={
 						<OpenRoute>
 							<ForgotPassword />
 						</OpenRoute>
 					}></Route>
 				<Route
-					path="update-password/:id"
+					path="/update-password/:id"
 					element={
 						<OpenRoute>
 							<UpdatePassword />
+						</OpenRoute>
+					}></Route>
+				<Route
+					path="/verify-email"
+					element={
+						<OpenRoute>
+							<VerifyEmail />
 						</OpenRoute>
 					}></Route>
 			</Routes>
