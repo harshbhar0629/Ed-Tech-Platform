@@ -9,15 +9,16 @@ import Quote from "../components/core/AboutPage/Quote";
 import FoundingStory from "../assets/Images/FoundingStory.png";
 import StatsComponenet from "../components/core/AboutPage/Stats";
 import Footer from "../components/common/Footer";
+import LearningGrid from "../components/core/AboutPage/LearningGrid";
 
 const About = () => {
 	return (
 		<div>
 			{/* Section - 1 */}
 			<section className="bg-richblack-700">
-				<div className="relative mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-center text-white">
+				<div className="relative mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-center  text-pure-greys-25">
 					<header className="mx-auto py-20 md:text-4xl text-2xl font-semibold lg:w-[70%]">
-						Driving Innovation in Online Education for a
+						Driving Innovation in Online Education for a <br></br>
 						<HighlightText text={"Brighter Future"} />
 						<p className="mx-auto mt-3 text-center  text-sm md:text-lg font-semibold text-richblack-300 lg:w-[95%]">
 							Tech-Treasure Hub is passionate about creating a brighter future
@@ -25,16 +26,19 @@ const About = () => {
 							technologies, and nurturing a vibrant learning community.
 						</p>
 					</header>
-					<div className="sm:h-[70px] lg:h-[150px]"></div>
-					<div className="absolute bottom-0 left-[50%] grid w-11/12 translate-x-[-50%] translate-y-[30%] grid-cols-3 gap-3 lg:gap-5">
+					<div className="sm:h-[100px] h-[30px] lg:h-[200px] md:h-[150px]"></div>
+					<div className="absolute bottom-0 left-[50%] grid w-11/12 translate-x-[-50%] translate-y-[30%] grid-cols-3 gap-2 lg:gap-5 mt-5">
 						<img
 							src={BannerImage1}
 							alt=""
 						/>
-						<img
-							src={BannerImage2}
-							alt=""
-						/>
+						<div className="flex flex-col relative">
+							<div className=" hidden md:block absolute mx-auto grad ml-[50px] mt-[-20px]"></div>
+							<img
+								src={BannerImage2}
+								alt=""
+							/>
+						</div>
 						<img
 							src={BannerImage3}
 							alt=""
@@ -114,12 +118,18 @@ const About = () => {
 						</div>
 					</div>
 				</div>
-            </section>
-            
-            {/* Stats */}
-            <StatsComponenet />
+			</section>
 
-            <Footer />
+			{/* Stats */}
+			<StatsComponenet />
+
+			{/* Section-4 */}
+			<section className="mx-auto mt-20 flex w-[84%] max-w-maxContent flex-col justify-between gap-10 text-white">
+				<LearningGrid />
+				{/* <ContactFormSection /> */}
+			</section>
+
+			<Footer />
 		</div>
 	);
 };
