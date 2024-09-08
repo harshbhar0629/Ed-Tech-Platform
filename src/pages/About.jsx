@@ -10,6 +10,7 @@ import FoundingStory from "../assets/Images/FoundingStory.png";
 import StatsComponenet from "../components/core/AboutPage/Stats";
 import Footer from "../components/common/Footer";
 import LearningGrid from "../components/core/AboutPage/LearningGrid";
+import ContactSection from "../components/core/AboutPage/ContactSection";
 
 const About = () => {
 	return (
@@ -89,6 +90,7 @@ const About = () => {
 							/>
 						</div>
 					</div>
+
 					<div className="flex flex-col items-center lg:gap-10 lg:flex-row justify-between">
 						<div className="my-24 flex lg:w-[40%] flex-col gap-10">
 							<h1 className="bg-gradient-to-b from-[#FF512F] to-[#F09819] bg-clip-text text-4xl font-semibold text-transparent lg:w-[70%] ">
@@ -126,8 +128,10 @@ const About = () => {
 			{/* Section-4 */}
 			<section className="mx-auto mt-20 flex w-[84%] max-w-maxContent flex-col justify-between gap-10 text-white">
 				<LearningGrid />
-				{/* <ContactFormSection /> */}
+				<ContactSection />
 			</section>
+
+			
 
 			<Footer />
 		</div>
