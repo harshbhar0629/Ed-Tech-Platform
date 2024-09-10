@@ -25,7 +25,7 @@ const ContactUsForm = () => {
 				contactusEndpoint.CONTACT_US_API,
 				data
 			);
-			// console.log("Email Res - ", res)
+			console.log("Email Res - ", res)
 		} catch (error) {
 			console.log("ERROR MESSAGE - ", error.message);
 			setLoading(false);
@@ -49,10 +49,9 @@ const ContactUsForm = () => {
 		<form
 			className="flex flex-col gap-7 mb-[70px] border-[2px] border-richblack-500 rounded-md p-8"
 			onSubmit={handleSubmit(submitContactForm)}>
-      <div className="flex flex-col gap-5 lg:flex-row">
-        
-        {/* First Name */}
-        <div className="flex flex-col gap-2 lg:w-[48%]">
+			<div className="flex flex-col gap-5 lg:flex-row">
+				{/* First Name */}
+				<div className="flex flex-col gap-2 lg:w-[48%]">
 					<label
 						htmlFor="firstname"
 						className="lable-style">
@@ -71,9 +70,9 @@ const ContactUsForm = () => {
 							Please enter your name.
 						</span>
 					)}
-        </div>
-        
-        {/* Last name */}
+				</div>
+
+				{/* Last name */}
 				<div className="flex flex-col gap-2 lg:w-[48%]">
 					<label
 						htmlFor="lastname"
@@ -91,7 +90,7 @@ const ContactUsForm = () => {
 				</div>
 			</div>
 
-      {/* Email-Address */}
+			{/* Email-Address */}
 			<div className="flex flex-col gap-2">
 				<label
 					htmlFor="email"
@@ -143,18 +142,17 @@ const ContactUsForm = () => {
 
 					<div className="flex w-[calc(100%-90px)] flex-col gap-2">
 						<input
-							type="number"
+							type="text"
 							name="phonenumber"
 							id="phonenumber"
 							placeholder="12345 67890"
-              className="form-style"
-              min={0}
+							className="form-style"
 							{...register("phoneNo", {
 								required: {
 									value: true,
 									message: "Please enter your Phone Number.",
 								},
-								maxLength: { value: 12, message: "Invalid Phone Number" },
+								maxLength: { value: 13, message: "Invalid Phone Number" },
 								minLength: { value: 10, message: "Invalid Phone Number" },
 							})}
 						/>
