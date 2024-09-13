@@ -6,9 +6,11 @@ import { useState, useEffect } from "react";
 import { apiConnector } from "../../../services/apiConnector";
 import { contactusEndpoint } from "../../../services/apis";
 import CountryCode from "../../../data/countrycode.json";
+import { toast } from "react-hot-toast";
 
 const ContactUsForm = () => {
 	const [loading, setLoading] = useState(false);
+	const [ccode, setCode] = useState("");
 	const {
 		register,
 		handleSubmit,
@@ -18,6 +20,7 @@ const ContactUsForm = () => {
 
 	const submitContactForm = async (data) => {
 		console.log("Form Data - ", data);
+		const toastId = toast.loading("Loading...");
 		try {
 			setLoading(true);
 			const res = await apiConnector(
@@ -25,13 +28,22 @@ const ContactUsForm = () => {
 				contactusEndpoint.CONTACT_US_API,
 				data
 			);
-			console.log("Email Res - ", res)
+			toast.success("Message sent successfully!");
+			console.log("Email Res - ", res);
 		} catch (error) {
 			console.log("ERROR MESSAGE - ", error.message);
 			setLoading(false);
 		}
+		toast.dismiss(toastId);
 		setLoading(false);
 	};
+
+	// const setCountryCode = (e) => {
+	// 	console.log("Clicked!");
+	// 	console.log(ccode);
+	// 	setCode(e.target.value);
+	// 	console.log(ccode);
+	// };
 
 	useEffect(() => {
 		if (isSubmitSuccessful) {
@@ -127,6 +139,7 @@ const ContactUsForm = () => {
 							id="firstname"
 							placeholder="Enter first name"
 							className="form-style"
+							// onClick={setCountryCode}
 							{...register("countrycode", { required: true })}>
 							{CountryCode.map((ele, i) => {
 								return (
@@ -152,7 +165,7 @@ const ContactUsForm = () => {
 									value: true,
 									message: "Please enter your Phone Number.",
 								},
-								maxLength: { value: 13, message: "Invalid Phone Number" },
+								maxLength: { value: 10, message: "Invalid Phone Number" },
 								minLength: { value: 10, message: "Invalid Phone Number" },
 							})}
 						/>
