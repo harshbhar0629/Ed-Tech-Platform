@@ -8,7 +8,7 @@ import { contactusEndpoint } from "../../../services/apis";
 import CountryCode from "../../../data/countrycode.json";
 import { toast } from "react-hot-toast";
 
-const ContactUsForm = ({border}) => {
+const ContactUsForm = ({ border }) => {
 	const [loading, setLoading] = useState(false);
 	const [ccode, setCode] = useState("");
 	const {
@@ -59,7 +59,11 @@ const ContactUsForm = ({border}) => {
 
 	return (
 		<form
-			className={`flex flex-col gap-7 mb-[70px] p-8 ${border === "undefined"? "border-[2px] border-richblack-500 rounded-md": ""}` }
+			className={`flex flex-col gap-7 mb-[70px] p-8 ${
+				border === "undefined"
+					? "border-[2px] border-richblack-500 rounded-md"
+					: ""
+			} w-full`}
 			onSubmit={handleSubmit(submitContactForm)}>
 			<div className="flex flex-col gap-5 lg:flex-row">
 				{/* First Name */}

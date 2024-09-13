@@ -12,6 +12,8 @@ import UpdatePassword from "./pages/UpdatePassword";
 import VerifyEmail from "./pages/VerifyEmail";
 import About from "./pages/About";
 import Contact from "./pages/Contact.js";
+import Dashboard from "./pages/Dashboard.js";
+import PrivateRoute from "./components/core/Auth/PrivateRoute.jsx"
 
 function App() {
 	return (
@@ -62,6 +64,12 @@ function App() {
 				<Route
 					path="/contact"
 					element={<Contact />}></Route>
+				<Route
+					element={
+						<PrivateRoute>
+							<Dashboard />
+						</PrivateRoute>
+					}></Route>
 			</Routes>
 		</div>
 	);
