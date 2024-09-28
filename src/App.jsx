@@ -15,7 +15,7 @@ import Contact from "./pages/Contact.js";
 import Dashboard from "./pages/Dashboard.js";
 import PrivateRoute from "./components/core/Auth/PrivateRoute.jsx";
 import Error from "./pages/Error.jsx";
-import Settings from "./components/core/Dashboard/Settings.jsx";
+import Settings from "./components/core/Dashboard/Settings";
 import MyCourses from "./components/core/Dashboard/MyCourses.jsx";
 import MyProfile from "./components/core/Dashboard/MyProfile.js";
 import EditCourse from "./components/core/Dashboard/EditCourse.jsx";
@@ -39,7 +39,7 @@ function App() {
 		// }
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
-	
+
 	return (
 		<div className=" w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
 			<Navbar />
@@ -127,6 +127,7 @@ function App() {
 							/>
 						</>
 					)}
+
 					{/* Route only for Students */}
 					{user?.accountType === ACCOUNT_TYPE.STUDENT && (
 						<>
