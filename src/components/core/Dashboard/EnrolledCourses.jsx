@@ -42,9 +42,8 @@ export default function EnrolledCourses() {
 					<div className="spinner"></div>
 				</div>
 			) : !enrolledCourses.length ? (
-				<p className="grid h-[10vh] w-full place-content-center text-richblack-5">
-					You have not enrolled in any course yet.
-					{/* TODO: Modify this Empty State */}
+				<p className="flex w-full justify-center items-center h-[75vh]  text-3xl text-richblack-50">
+					You have not enrolled in any course yet..!
 				</p>
 			) : (
 				<div className="my-8 text-richblack-5">
@@ -61,6 +60,7 @@ export default function EnrolledCourses() {
 								i === arr.length - 1 ? "rounded-b-lg" : "rounded-none"
 							}`}
 							key={i}>
+
 							<div
 								className="flex w-[45%] cursor-pointer items-center gap-4 px-5 py-3"
 								onClick={() => {
@@ -73,6 +73,7 @@ export default function EnrolledCourses() {
 									alt="course_img"
 									className="h-14 w-14 rounded-lg object-cover"
 								/>
+
 								<div className="flex max-w-xs flex-col gap-2">
 									<p className="font-semibold">{course.courseName}</p>
 									<p className="text-xs text-richblack-300">
@@ -82,7 +83,9 @@ export default function EnrolledCourses() {
 									</p>
 								</div>
 							</div>
+
 							<div className="w-1/4 px-2 py-3">{course?.totalDuration}</div>
+
 							<div className="flex w-1/5 flex-col gap-2 px-2 py-3">
 								<p>Progress: {course.progressPercentage || 0}%</p>
 								<ProgressBar

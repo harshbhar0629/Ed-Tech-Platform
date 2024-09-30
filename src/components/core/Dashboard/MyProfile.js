@@ -6,10 +6,17 @@ import { useNavigate } from "react-router-dom";
 
 import { formattedDate } from "../../../utils/dateFormatter";
 import IconBtn from "../../common/IconBtn";
+import { useEffect } from "react";
 
 export default function MyProfile() {
 	const { user } = useSelector((state) => state.profile);
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		console.log("Printing user in profile!");
+		console.log(user);
+		console.log(user?.additionalDetails);
+	}, [user]);
 
 	return (
 		<>
@@ -60,7 +67,9 @@ export default function MyProfile() {
 							? "text-richblack-5"
 							: "text-richblack-400"
 					} text-sm font-medium`}>
-					{user?.additionalDetails?.about ?? "Write Something About Yourself.."}
+					{user?.additionalDetails?.about
+						? user?.additionalDetails?.about
+						: "Write Something About Yourself.."}
 				</p>
 			</div>
 

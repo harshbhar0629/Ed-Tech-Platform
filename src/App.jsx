@@ -20,7 +20,7 @@ import MyCourses from "./components/core/Dashboard/MyCourses.jsx";
 import MyProfile from "./components/core/Dashboard/MyProfile.js";
 import EditCourse from "./components/core/Dashboard/EditCourse.jsx";
 import EnrolledCourses from "./components/core/Dashboard/EnrolledCourses.jsx";
-import Cart from "./components/core/Dashboard/Cart.jsx";
+import Cart from "./components/core/Dashboard/Cart";
 import AddCourse from "./components/core/Dashboard/AddCourse.jsx";
 import Instructor from "./components/core/Dashboard/Instructor.jsx";
 import { useDispatch, useSelector } from "react-redux";
