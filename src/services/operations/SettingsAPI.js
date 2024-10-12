@@ -49,6 +49,8 @@ export function updateProfile(token, formData) {
 	return async (dispatch) => {
 		const toastId = toast.loading("Loading...");
 		try {
+			console.log("Sending request to update profile");
+			console.log(formData);
 			const response = await apiConnector("PUT", UPDATE_PROFILE_API, formData, {
 				Authorization: `Bearer ${token}`,
 			});
@@ -64,6 +66,8 @@ export function updateProfile(token, formData) {
 			dispatch(
 				setUser({ ...response.data.updatedUserDetails, image: userImage })
 			);
+			console.log("Response after updation of profile");
+			console.log(response.data.updatedUserDetails);
 			toast.success("Profile Updated Successfully");
 		} catch (error) {
 			console.log("UPDATE_PROFILE_API API ERROR............", error);

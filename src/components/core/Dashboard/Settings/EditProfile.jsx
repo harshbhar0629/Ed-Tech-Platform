@@ -4,8 +4,9 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { updateProfile } from "../../../../services/operations/SettingsAPI"
+import { updateProfile } from "../../../../services/operations/SettingsAPI";
 import IconBtn from "../../../common/IconBtn";
+import { useEffect } from "react";
 
 const genders = ["Male", "Female", "Non-Binary", "Prefer not to say", "Other"];
 
@@ -14,6 +15,10 @@ export default function EditProfile() {
 	const { token } = useSelector((state) => state.auth);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		console.log("Change occur in user");
+	}, user)
 
 	const {
 		register,
@@ -25,6 +30,7 @@ export default function EditProfile() {
 		// console.log("Form Data - ", data)
 		try {
 			dispatch(updateProfile(token, data));
+			console.log("Submit profile called ......................dbwjebwfcwe");
 		} catch (error) {
 			console.log("ERROR MESSAGE - ", error.message);
 		}
@@ -196,20 +202,19 @@ export default function EditProfile() {
 							)}
 						</div>
 					</div>
-
-					<div className="flex justify-end gap-2 ">
-						<button
-							onClick={() => {
-								navigate("/dashboard/my-profile");
-							}}
-							className="cursor-pointer rounded-md bg-richblack-700 py-2 px-5 font-semibold text-richblack-50">
-							Cancel
-						</button>
-						<IconBtn
-							type="submit"
-							text="Save"
-						/>
-					</div>
+				</div>
+				<div className="flex justify-end gap-2 ">
+					<button
+						onClick={() => {
+							navigate("/dashboard/my-profile");
+						}}
+						className="cursor-pointer rounded-md bg-richblack-700 py-2 px-5 font-semibold text-richblack-50">
+						Cancel
+					</button>
+					<IconBtn
+						type="submit"
+						text="Save"
+					/>
 				</div>
 			</form>
 		</>
