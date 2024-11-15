@@ -7,8 +7,12 @@ import { apiConnector } from "../../../services/apiConnector";
 import { contactusEndpoint } from "../../../services/apis";
 import CountryCode from "../../../data/countrycode.json";
 import { toast } from "react-hot-toast";
+import { useLocation } from "react-router-dom";
 
 const ContactUsForm = ({ border }) => {
+	const location = useLocation();
+	console.log(location.pathname);
+	console.log(border)
 	const [loading, setLoading] = useState(false);
 	const [ccode, setCode] = useState("");
 	const {
@@ -60,9 +64,9 @@ const ContactUsForm = ({ border }) => {
 	return (
 		<form
 			className={`flex flex-col gap-7 mb-[70px] p-8 ${
-				border === "undefined"
-					? "border-[2px] border-richblack-500 rounded-md"
-					: ""
+				border === undefined
+					? ""
+					: "border-[2px] border-richblack-500 rounded-md"
 			} w-full`}
 			onSubmit={handleSubmit(submitContactForm)}>
 			<div className="flex flex-col gap-5 lg:flex-row">

@@ -14,7 +14,7 @@ const ContactForm = () => {
 			</p>
 
 			<div className="mt-7 -mb-20">
-				<ContactUsForm border="true" />
+				<ContactUsForm />
 			</div>
 		</div>
 	);

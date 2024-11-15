@@ -11,7 +11,7 @@ const ContactSection = () => {
 				We&apos;d love to here for you, Please fill out this form.
 			</p>
 			<div className="mt-12 mx-auto">
-				<ContactUsForm />
+				<ContactUsForm border={"true"} />
 			</div>
 		</div>
 	);
