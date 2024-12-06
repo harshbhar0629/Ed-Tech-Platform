@@ -461,7 +461,7 @@ exports.getInstructorCourses = async (req, res) => {
 exports.deleteCourse = async (req, res) => {
 	try {
 		const { courseId } = req.body;
-
+		console.log("Delte course inside...")
 		// Find the course
 		const course = await Course.findById(courseId);
 		if (!course) {
@@ -472,7 +472,7 @@ exports.deleteCourse = async (req, res) => {
 		}
 
 		// Unenroll students from the course
-		const studentsEnrolled = course.studentsEnroled;
+		const studentsEnrolled = course.studentsEnrolled;
 		for (const studentId of studentsEnrolled) {
 			await User.findByIdAndUpdate(studentId, {
 				$pull: { courses: courseId },
