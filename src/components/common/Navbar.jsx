@@ -2,7 +2,7 @@
 
 import React from "react";
 import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, matchPath } from "react-router-dom";
 import logo from "../../assets/Logo/logo2.png";
