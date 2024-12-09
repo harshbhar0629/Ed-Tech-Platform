@@ -8,55 +8,55 @@ import { Link, matchPath } from "react-router-dom";
 import logo from "../../assets/Logo/logo2.png";
 import { NavbarLinks } from "../../data/navbar-links.js";
 import { useLocation } from "react-router-dom";
-// import { apiConnector } from "../../services/apiConnector.js";
-// import { categories } from "../../services/apis.js";
+import { apiConnector } from "../../services/apiConnector.js";
+import { categories } from "../../services/apis.js";
 import { BsChevronDown } from "react-icons/bs";
 import ProfileDropdown from "../../components/core/Auth/ProfileDropdown.jsx"
 
-const subLinks = [
-	{
-		title: "Python",
-		link: "/catalog/python",
-	},
-	{
-		title: "Javascript",
-		link: "/catalog/javascript",
-	},
-	{
-		title: "Web-Development",
-		link: "/catalog/web-development",
-	},
-	{
-		title: "Android Development",
-		link: "/catalog/Android Development",
-	},
-];
+// const subLinks = [
+// 	{
+// 		title: "Python",
+// 		link: "/catalog/python",
+// 	},
+// 	{
+// 		title: "Javascript",
+// 		link: "/catalog/javascript",
+// 	},
+// 	{
+// 		title: "Web-Development",
+// 		link: "/catalog/web-development",
+// 	},
+// 	{
+// 		title: "Android Development",
+// 		link: "/catalog/Android Development",
+// 	},
+// ];
 
 const Navbar = () => {
 	const location = useLocation();
 	const matchRoute = (route) => {
 		return matchPath({ path: route }, location.pathname);
 	};
-	// const [subLinks, setSubLinks] = useState([]);
+	const [subLinks, setSubLinks] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const { token } = useSelector((state) => state.auth);
 	const { user } = useSelector((state) => state.profile);
 	const { totalItems } = useSelector((state) => state.cart);
 
-	// const fetchSubLinks = async () => {
-	// 	try {
-	// 		const res = await apiConnector("GET", categories.CATEGORIES_API);
-	// 		console.log(res.data);
-	// 		setSubLinks(res.data.data);
-	// 	} catch (error) {
-	// 		console.log("Could not fetch Categories.", error.message);
-	// 	}
-	// 	setLoading(false);
-	// };
+	const fetchSubLinks = async () => {
+		try {
+			const res = await apiConnector("GET", categories.CATEGORIES_API);
+			console.log(res.data);
+			setSubLinks(res.data.data);
+		} catch (error) {
+			console.log("Could not fetch Categories.", error.message);
+		}
+		setLoading(false);
+	};
 
-	// useEffect(() => {
-	// 	fetchSubLinks();
-	// }, []);
+	useEffect(() => {
+		fetchSubLinks();
+	}, []);
 
 	return (
 		<div
