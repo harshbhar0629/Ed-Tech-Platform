@@ -26,6 +26,7 @@ import Instructor from "./components/core/Dashboard/Instructor.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { ACCOUNT_TYPE } from "./utils/constant.js";
+import Catalog from "./pages/Catalog.jsx";
 
 function App() {
 	const dispatch = useDispatch();
@@ -47,6 +48,10 @@ function App() {
 				<Route
 					path="/"
 					element={<Home />}></Route>
+				<Route
+					path="/catalog/:catalogName"
+					element={<Catalog />}
+				/>
 				<Route
 					path="/login"
 					element={
