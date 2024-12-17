@@ -1,20 +1,16 @@
 /** @format */
+
 import React from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
-import "swiper/css/navigation";
-import SwiperCore, { FreeMode, Pagination } from "swiper";
-
-SwiperCore.use([FreeMode, Pagination]);
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+import { Autoplay, FreeMode, Navigation, Pagination } from "swiper/modules";
 
 import CourseCard from "./CourseCard";
 
-function CourseSlider({ Courses }) {
+const CourseSlider = ({ Courses }) => {
 	return (
 		<>
 			{Courses?.length ? (
@@ -43,6 +39,6 @@ function CourseSlider({ Courses }) {
 			)}
 		</>
 	);
-}
+};
 
 export default CourseSlider;

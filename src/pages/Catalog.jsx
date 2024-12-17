@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import Footer from "../components/common/Footer";
-import CourseCard from "../components/core/Catalog/CourseCard"
+import CourseCard from "../components/core/Catalog/CourseCard";
 import CourseSlider from "../components/core/Catalog/CourseSlider";
 import { apiConnector } from "../services/apiConnector";
 import { categories } from "../services/apis";
