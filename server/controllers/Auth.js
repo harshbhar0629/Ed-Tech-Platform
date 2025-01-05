@@ -226,7 +226,7 @@ exports.sendotp = async (req, res) => {
 			specialChars: false,
 		});
 
-		const result = await OTP.findOne({ otp: otp });
+		let result = await OTP.findOne({ otp: otp });
 
 		console.log("Result is Generate OTP Func");
 		console.log("OTP", otp);
@@ -236,6 +236,7 @@ exports.sendotp = async (req, res) => {
 			otp = otpGenerator.generate(6, {
 				specialChars: false,
 			});
+			result = await OTP.findOne({ otp: otp });
 		}
 
 		const otpPayload = { email, otp };
