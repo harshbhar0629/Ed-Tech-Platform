@@ -27,10 +27,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { ACCOUNT_TYPE } from "./utils/constant.js";
 import Catalog from "./pages/Catalog.jsx";
+import CourseDetails from "./pages/CourseDetails.jsx";
 
 function App() {
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
+	// const dispatch = useDispatch();
+	// const navigate = useNavigate();
 	const { user } = useSelector((state) => state.profile);
 
 	useEffect(() => {
@@ -66,6 +67,10 @@ function App() {
 							<Signup />
 						</OpenRoute>
 					}></Route>
+				<Route
+					path="courses/:courseId"
+					element={<CourseDetails />}
+				/>
 				<Route
 					path="/forgot-password"
 					element={

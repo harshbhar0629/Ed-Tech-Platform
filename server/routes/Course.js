@@ -102,7 +102,7 @@ router.post("/updateCourseProgress", auth, isStudent, updateCourseProgress);
 // Delete a Course
 router.delete("/deleteCourse", deleteCourse);
 
-//                                      Category routes (Only by Admin)
+//          Category routes (Only by Admin)
 // Category can Only be Created by Admin
 router.post("/createCategory", auth, isAdmin, createCategory);
 router.get("/showAllCategories", showAllCategories);
