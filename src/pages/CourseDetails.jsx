@@ -3,18 +3,18 @@
 import React, { useEffect, useState } from "react";
 import { BiInfoCircle } from "react-icons/bi";
 import { HiOutlineGlobeAlt } from "react-icons/hi";
-import ReactMarkdown from "react-markdown";
+import { defaultUrlTransform } from "react-markdown";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
-import ConfirmationModal from "../components/common/ConfirmationModal";
+import ConfirmationModal from "../components/common/ConfirmationModal"
 import Footer from "../components/common/Footer";
 import RatingStars from "../components/common/RatingStars";
 import CourseAccordionBar from "../components/core/Course/CourseAccordionBar";
 import CourseDetailsCard from "../components/core/Course/CourseDetailsCard";
 import { formatDate } from "../services/FormatDate";
-import { fetchCourseDetails } from "../services/operations/courseDetailsAPI";
-import { BuyCourse } from "../services/operations/studentFeaturesAPI";
+import { fetchCourseDetails } from "../services/operations/courseDetailsAPI.js";
+import { buyCourse } from "../services/operations/studentFeaturesAPI.js";
 import GetAvgRating from "../utils/avgRating";
 import Error from "./Error";
 
@@ -40,7 +40,6 @@ function CourseDetails() {
 				const res = await fetchCourseDetails(courseId);
 				// console.log("course details res: ", res)
 				setResponse(res);
-				console.log(res);
 			} catch (error) {
 				console.log("Could not fetch Course Details");
 			}
@@ -74,7 +73,7 @@ function CourseDetails() {
 	useEffect(() => {
 		let lectures = 0;
 		response?.data?.courseDetails?.courseContent?.forEach((sec) => {
-			lectures += sec.subSection.length || 0;
+			lectures += sec.subSection?.length || 0;
 		});
 		setTotalNoOfLectures(lectures);
 	}, [response]);
@@ -106,7 +105,7 @@ function CourseDetails() {
 
 	const handleBuyCourse = () => {
 		if (token) {
-			BuyCourse(token, [courseId], user, navigate, dispatch);
+			buyCourse(token, [courseId], user, navigate, dispatch);
 			return;
 		}
 		setConfirmationModal({
@@ -133,9 +132,9 @@ function CourseDetails() {
 			<div className={`relative w-full bg-richblack-800`}>
 				{/* Hero Section */}
 				<div className="mx-auto box-content px-4 lg:w-[1260px] 2xl:relative ">
-					<div className="mx-auto grid min-h-[450px] w-full justify-items-center py-8 lg:mx-0 lg:justify-items-start lg:py-0 xl:max-w-[810px]">
-						<div className="relative block max-h-[30rem] mx-auto w-[50%]">
-							<div className="absolute bottom-0 left-0 h-full w-full shadow-[#161D29_0px_-64px_36px_-28px_inset]"></div>
+					<div className="mx-auto grid min-h-[450px] max-w-maxContentTab justify-items-center py-8 lg:mx-0 lg:justify-items-start lg:py-0 xl:max-w-[810px]">
+						<div className="relative block max-h-[30rem] lg:hidden">
+							<div className="absolute bottom-0 left-0 h-full w-full shadow -[#161D29_0px_-64px_36px_-28px_inset]"></div>
 							<img
 								src={thumbnail}
 								alt="course thumbnail"
@@ -156,12 +155,13 @@ function CourseDetails() {
 									Review_Count={avgReviewCount}
 									Star_Size={24}
 								/>
-								<span>{`(${ratingAndReviews.length} reviews)`}</span>
-								<span>{`${studentsEnrolled.length} students enrolled`}</span>
+								<span>{`(${ratingAndReviews?.length} reviews)`}</span>
+								<span>{`${studentsEnrolled?.length} students enrolled`}</span>
 							</div>
 							<div>
 								<p className="">
-									Created By {`${instructor.firstName} ${instructor.lastName}`}
+									Created By{" "}
+									{`${instructor?.firstName} ${instructor?.lastName}`}
 								</p>
 							</div>
 							<div className="flex flex-wrap gap-5 text-lg">
@@ -175,7 +175,7 @@ function CourseDetails() {
 								</p>
 							</div>
 						</div>
-						<div className="flex w-full flex-col gap-4 border-y border-y-richblack-500 py-4">
+						<div className="flex w-full flex-col gap-4 border-y border-y-richblack-500 py-4 lg:hidden">
 							<p className="space-x-3 pb-4 text-3xl font-semibold text-richblack-5">
 								Rs. {price}
 							</p>
@@ -203,7 +203,7 @@ function CourseDetails() {
 					<div className="my-8 border border-richblack-600 p-8">
 						<p className="text-3xl font-semibold">What you'll learn</p>
 						<div className="mt-5">
-							<ReactMarkdown>{whatYouWillLearn}</ReactMarkdown>
+							<defaultUrlTransform>{whatYouWillLearn}</defaultUrlTransform>
 						</div>
 					</div>
 
@@ -214,7 +214,7 @@ function CourseDetails() {
 							<div className="flex flex-wrap justify-between gap-2">
 								<div className="flex gap-2">
 									<span>
-										{courseContent.length} {`section(s)`}
+										{courseContent?.length} {`section(s)`}
 									</span>
 									<span>
 										{totalNoOfLectures} {`lecture(s)`}
@@ -249,14 +249,14 @@ function CourseDetails() {
 							<div className="flex items-center gap-4 py-4">
 								<img
 									src={
-										instructor.image
-											? instructor.image
-											: `https://api.dicebear.com/5.x/initials/svg?seed=${instructor.firstName} ${instructor.lastName}`
+										instructor?.image
+											? instructor?.image
+											: `https://api.dicebear.com/5.x/initials/svg?seed=${instructor?.firstName} ${instructor?.lastName}`
 									}
 									alt="Author"
 									className="h-14 w-14 rounded-full object-cover"
 								/>
-								<p className="text-lg">{`${instructor.firstName} ${instructor.lastName}`}</p>
+								<p className="text-lg">{`${instructor?.firstName} ${instructor?.lastName}`}</p>
 							</div>
 							<p className="text-richblack-50">
 								{instructor?.additionalDetails?.about}
