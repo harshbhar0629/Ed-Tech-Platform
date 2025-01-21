@@ -29,7 +29,7 @@ const CourseSlider = ({ Courses }) => {
 						<SwiperSlide key={i}>
 							<CourseCard
 								course={course}
-								Height={"h-[250px]"}
+								Height={"h-[200px]"}
 							/>
 						</SwiperSlide>
 					))}

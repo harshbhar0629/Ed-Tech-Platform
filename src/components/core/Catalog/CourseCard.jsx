@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import GetAvgRating from "../../../utils/avgRating";
 import RatingStars from "../../common/RatingStars"
 
-function CourseCard({ course, Height }) {
+function CourseCard({ course, Height, width }) {
 	// const avgReviewCount = GetAvgRating(course.ratingAndReviews)
 	// console.log(course.ratingAndReviews)
 	const [avgReviewCount, setAvgReviewCount] = useState(0);
@@ -23,7 +23,7 @@ function CourseCard({ course, Height }) {
 						<img
 							src={course?.thumbnail}
 							alt="course thumnail"
-							className={`${Height} w-full rounded-xl object-cover `}
+							className={`${Height} ${width? `w-[${width}%]` : "w-full"} rounded-xl object-fit`}
 						/>
 					</div>
 					<div className="flex flex-col gap-2 px-1 py-3">
@@ -33,7 +33,7 @@ function CourseCard({ course, Height }) {
 						</p>
 						<div className="flex items-center gap-2">
 							<span className="text-yellow-5">{avgReviewCount || 0}</span>
-							
+
 							<RatingStars Review_Count={avgReviewCount} />
 							<span className="text-richblack-400">
 								{course?.ratingAndReviews?.length} Ratings

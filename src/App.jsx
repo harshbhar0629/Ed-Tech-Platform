@@ -28,17 +28,20 @@ import { useEffect } from "react";
 import { ACCOUNT_TYPE } from "./utils/constant.js";
 import Catalog from "./pages/Catalog.jsx";
 import CourseDetails from "./pages/CourseDetails.jsx";
+import ViewCourse from "./pages/ViewCourse.jsx";
+import VideoDetails from "./components/core/ViewCourse/VideoDetails.jsx";
+import { getUserDetails } from "./services/operations/profileAPI.js";
 
 function App() {
-	// const dispatch = useDispatch();
-	// const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const { user } = useSelector((state) => state.profile);
 
 	useEffect(() => {
-		// if (localStorage.getItem("token")) {
-		// 	const token = JSON.parse(localStorage.getItem("token"));
-		// 	dispatch(getUserDetails(token, navigate));
-		// }
+		if (localStorage.getItem("token")) {
+			const token = JSON.parse(localStorage.getItem("token"));
+			dispatch(getUserDetails(token, navigate));
+		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
@@ -155,6 +158,22 @@ function App() {
 						path="dashboard/settings"
 						element={<Settings />}
 					/>
+				</Route>
+				{/* For the watching course lectures */}
+				<Route
+					element={
+						<PrivateRoute>
+							<ViewCourse />
+						</PrivateRoute>
+					}>
+					{user?.accountType === ACCOUNT_TYPE.STUDENT && (
+						<>
+							<Route
+								path="view-course/:courseId/section/:sectionId/sub-section/:subSectionId"
+								element={<VideoDetails />}
+							/>
+						</>
+					)}
 				</Route>
 				<Route
 					path="*"
