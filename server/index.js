@@ -34,7 +34,7 @@ const allowedOrigins = [
 
 app.use(
 	cors({
-		origin: "https://ed-tech-platform-tau.vercel.app/",
+		origin: "https://ed-tech-platform-tau.vercel.app",
 		credentials: true,
 	})
 );
