@@ -3,9 +3,11 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
 
+const MONGO_URL = process.env.MONGO_URL || "";
+
 exports.dbConnect = () => {
 	mongoose
-		.connect(process.env.MONGO_URL, {
+		.connect(MONGO_URL, {
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
 		})
