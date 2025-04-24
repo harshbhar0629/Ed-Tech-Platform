@@ -65,4 +65,5 @@ if (process.env.TYPE !== "HTTPS" && process.env.TYPE !== "TEST" && process.env.N
 	});
 }
 
+module.exports = app;
 // End of code.
