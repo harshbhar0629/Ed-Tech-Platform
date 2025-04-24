@@ -8,7 +8,7 @@ const router = express.Router();
 const {
 	login,
 	signup,
-	sendotp,
+	sendotp, 
 	changePassword,
 } = require("../controllers/Auth");
 const {
