@@ -29,18 +29,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 const allowedOrigins = [
 	"http://localhost:3000",
-	"https://ed-tech-platform-tau.vercel.app/",
+	
 ];
 
 app.use(
 	cors({
-		origin: function (origin, callback) {
-			if (!origin || allowedOrigins.includes(origin)) {
-				callback(null, true);
-			} else {
-				callback(new Error("Not allowed by CORS"));
-			}
-		},
+		origin: "https://ed-tech-platform-tau.vercel.app/",
 		credentials: true,
 	})
 );
