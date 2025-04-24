@@ -58,9 +58,11 @@ app.get("/", (req, res) => {
 	});
 });
 
-// Listening to the server
-app.listen(PORT, () => {
-	console.log(`App is listening at ${PORT}`);
-});
+if (process.env.TYPE !== "HTTPS" && process.env.TYPE !== "TEST" && process.env.NODE_ENV !== 'production') {
+	// Listening to the server
+	app.listen(PORT, () => {
+		console.log(`App is listening at ${PORT}`);
+	});
+}
 
 // End of code.
