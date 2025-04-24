@@ -45,11 +45,11 @@ const {
 	createRating,
 	getAverageRating,
 	getAllRatingReview,
-} = require("../controllers/RatingandReview");
+} = require("../controllers/RatingAndReview");
 const {
 	updateCourseProgress,
 	getProgressPercentage,
-} = require("../controllers/courseProgress");
+} = require("../controllers/CourseProgress");
 // Importing Middlewares
 const {
 	auth,
