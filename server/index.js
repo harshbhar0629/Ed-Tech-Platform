@@ -27,7 +27,6 @@ database.dbConnect();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-const allowedOrigins = ["http://localhost:3000"];
 
 let url;
 if (process.env.NODE_ENV === "production") {

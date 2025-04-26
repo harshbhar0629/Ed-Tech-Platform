@@ -3,7 +3,7 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-const MONGO_URL = process.env.MONGO_URL || "";
+const MONGO_URL = process.env.NODE_ENV !== "production"? process.env.MONGODB_URL: process.env.MONGO_URL;
 
 exports.dbConnect = () => {
 	mongoose
