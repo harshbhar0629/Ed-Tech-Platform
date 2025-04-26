@@ -359,7 +359,7 @@ exports.sendPaymentSuccessEmail = async (req, res) => {
 //         console.log(enrolledStudent);
 
 //         //Now send the courseEnrolled template mail
-//          const emailResponse=await mailSender(enrolledStudent.email,"Congratulations from StudyNotion","Congratulations,You are onboarded into new StudyNotion Course")
+//          const emailResponse=await mailSender(enrolledStudent.email,"Congratulations from Tech-Treasure Hub","Congratulations,You are onboarded into new Tech-Treasure Hub Course")
 //         console.log(emailResponse);
 //         return res.status(200).json({
 //           success:true,
