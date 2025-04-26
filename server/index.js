@@ -27,14 +27,18 @@ database.dbConnect();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-const allowedOrigins = [
-	"http://localhost:3000",
-	
-];
+const allowedOrigins = ["http://localhost:3000"];
 
+let url;
+if (process.env.NODE_ENV === "production") {
+	url = process.env.productionUrl;
+}
+else {
+	url = process.env.localUrl;
+}
 app.use(
 	cors({
-		origin: "https://ed-tech-platform-tau.vercel.app",
+		origin: url,
 		credentials: true,
 	})
 );
@@ -48,7 +52,7 @@ app.use(
 // Connecting to cloudinary
 cloudinaryConnect();
 
-// Setting up routes 
+// Setting up routes
 app.use("/api/v1/auth", userRoutes);
 app.use("/api/v1/profile", profileRoutes);
 app.use("/api/v1/course", courseRoutes);
@@ -63,7 +67,11 @@ app.get("/", (req, res) => {
 	});
 });
 
-if (process.env.TYPE !== "HTTPS" && process.env.TYPE !== "TEST" && process.env.NODE_ENV !== 'production') {
+if (
+	process.env.TYPE !== "HTTPS" &&
+	process.env.TYPE !== "TEST" &&
+	process.env.NODE_ENV !== "production"
+) {
 	// Listening to the server
 	app.listen(PORT, () => {
 		console.log(`App is listening at ${PORT}`);
