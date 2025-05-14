@@ -116,7 +116,7 @@ async function sendPaymentSuccessEmail(response, amount, token) {
 		);
 	} catch (error) {
 		// console.log("Payment success email error", error);
-	}
+	} 
 }
 
 //verify payment
