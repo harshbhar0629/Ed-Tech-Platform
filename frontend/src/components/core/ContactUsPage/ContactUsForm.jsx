@@ -11,8 +11,8 @@ import { useLocation } from "react-router-dom";
 
 const ContactUsForm = ({ border }) => {
 	const location = useLocation();
-	// console.log(location.pathname);
-	// console.log(border)
+	console.log(location.pathname);
+	console.log(border);
 	const [loading, setLoading] = useState(false);
 	const [ccode, setCode] = useState("");
 	const {
@@ -23,7 +23,7 @@ const ContactUsForm = ({ border }) => {
 	} = useForm();
 
 	const submitContactForm = async (data) => {
-		// console.log("Form Data - ", data);
+		console.log("Form Data - ", data);
 		const toastId = toast.loading("Loading...");
 		try {
 			setLoading(true);
@@ -33,9 +33,9 @@ const ContactUsForm = ({ border }) => {
 				data
 			);
 			toast.success("Message sent successfully!");
-			// console.log("Email Res - ", res);
+			console.log("Email Res - ", res);
 		} catch (error) {
-			// console.log("ERROR MESSAGE - ", error.message);
+			console.log("ERROR MESSAGE - ", error.message);
 			setLoading(false);
 		}
 		toast.dismiss(toastId);
@@ -43,10 +43,10 @@ const ContactUsForm = ({ border }) => {
 	};
 
 	// const setCountryCode = (e) => {
-	// 	// console.log("Clicked!");
-	// 	// console.log(ccode);
+	// 	console.log("Clicked!");
+	// 	console.log(ccode);
 	// 	setCode(e.target.value);
-	// 	// console.log(ccode);
+	// 	console.log(ccode);
 	// };
 
 	useEffect(() => {

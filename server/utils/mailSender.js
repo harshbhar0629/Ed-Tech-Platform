@@ -20,9 +20,9 @@ const mailSender = async (email, title, body) => {
 			subject: `${title}`,
 			html: `${body}`,
 		});
-		// console.log(info);
+		console.log(info);
 	} catch (err) {
-		// console.log("Error in sending mail");
+		console.log("Error in sending mail");
 	}
 };
 

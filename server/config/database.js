@@ -12,9 +12,9 @@ exports.dbConnect = () => {
 	mongoose
 		.connect(MONGO_URL)
 		.then(() => {
-			// console.log("Db connect successfully");
+			console.log("Db connect successfully");
 		})
 		.catch((err) => {
-			// console.log("Error in db connection");
+			console.log("Error in db connection");
 		});
 };

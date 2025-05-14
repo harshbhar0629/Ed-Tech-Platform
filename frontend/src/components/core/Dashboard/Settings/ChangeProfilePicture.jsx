@@ -24,7 +24,7 @@ export default function ChangeProfilePicture() {
 
 	const handleFileChange = (e) => {
 		const file = e.target.files[0];
-		// // console.log(file)
+		// console.log(file)
 		if (file) {
 			setImageFile(file);
 			previewFile(file);
@@ -41,16 +41,16 @@ export default function ChangeProfilePicture() {
 
 	const handleFileUpload = () => {
 		try {
-			// console.log("uploading...");
+			console.log("uploading...");
 			setLoading(true);
 			const formData = new FormData();
 			formData.append("displayPicture", imageFile);
-			// // console.log("formdata", formData)
+			// console.log("formdata", formData)
 			dispatch(updateDisplayPicture(token, formData)).then(() => {
 				setLoading(false);
 			});
 		} catch (error) {
-			// console.log("ERROR MESSAGE - ", error.message);
+			console.log("ERROR MESSAGE - ", error.message);
 		}
 	};
 

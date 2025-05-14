@@ -7,13 +7,13 @@ import RatingStars from "../../common/RatingStars";
 
 function CourseCard({ course, Height, width }) {
 	// const avgReviewCount = GetAvgRating(course.ratingAndReviews)
-	// // console.log(course.ratingAndReviews)
+	// console.log(course.ratingAndReviews)
 	const [avgReviewCount, setAvgReviewCount] = useState(0);
 	useEffect(() => {
 		const count = GetAvgRating(course.ratingAndReviews);
 		setAvgReviewCount(count);
 	}, [course]);
-	// // console.log("count............", avgReviewCount)
+	// console.log("count............", avgReviewCount)
 
 	return (
 		<>

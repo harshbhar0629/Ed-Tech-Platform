@@ -17,7 +17,7 @@ export default function EditProfile() {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		// console.log("Change occur in user");
+		console.log("Change occur in user");
 	}, user);
 
 	const {
@@ -27,12 +27,12 @@ export default function EditProfile() {
 	} = useForm();
 
 	const submitProfileForm = async (data) => {
-		// // console.log("Form Data - ", data)
+		// console.log("Form Data - ", data)
 		try {
 			dispatch(updateProfile(token, data));
-			// console.log("Submit profile called ......................dbwjebwfcwe");
+			console.log("Submit profile called ......................dbwjebwfcwe");
 		} catch (error) {
-			// console.log("ERROR MESSAGE - ", error.message);
+			console.log("ERROR MESSAGE - ", error.message);
 		}
 	};
 	return (

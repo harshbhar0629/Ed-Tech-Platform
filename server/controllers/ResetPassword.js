@@ -24,7 +24,7 @@ exports.resetPasswordToken = async (req, res) => {
 			},
 			{ new: true }
 		);
-		// console.log("DETAILS: \n", updatedDetails);
+		console.log("DETAILS: \n", updatedDetails);
 
 		const url = `http://localhost:3000/update-password/${token}`;
 
@@ -40,7 +40,7 @@ exports.resetPasswordToken = async (req, res) => {
 				"Email Sent Successfully, Please Check Your Email to Continue Further",
 		});
 	} catch (error) {
-		// console.log(error.message);
+		console.log(error.message);
 		return res.json({
 			error: error.message,
 			success: false,

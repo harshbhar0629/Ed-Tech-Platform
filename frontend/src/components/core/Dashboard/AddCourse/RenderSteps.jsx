@@ -8,8 +8,8 @@ import { FaCheck } from "react-icons/fa";
 
 export default function RenderSteps() {
 	const { step } = useSelector((state) => state.course);
-	// console.log("Print")
-	// console.log(step)
+	console.log("Print");
+	console.log(step);
 	const steps = [
 		{
 			id: 1,

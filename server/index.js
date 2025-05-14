@@ -35,7 +35,7 @@ if (process.env.NODE_ENV === "production") {
 	url = process.env.localUrl;
 }
 
-// console.log("url", url);
+console.log("url", url);
 app.use(
 	cors({
 		origin: url,
@@ -74,7 +74,7 @@ if (
 ) {
 	// Listening to the server
 	app.listen(PORT, () => {
-		// console.log(`App is listening at ${PORT}`);
+		console.log(`App is listening at ${PORT}`);
 	});
 }
 

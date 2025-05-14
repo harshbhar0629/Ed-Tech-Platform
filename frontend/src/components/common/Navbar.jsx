@@ -6,12 +6,12 @@ import { BsChevronDown } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { Link, matchPath, useLocation } from "react-router-dom";
 
-import logo from "../../assets/Logo/logo2.png"
+import logo from "../../assets/Logo/logo2.png";
 import { NavbarLinks } from "../../data/navbar-links";
-import { apiConnector } from "../../services/apiConnector"
+import { apiConnector } from "../../services/apiConnector";
 import { categories } from "../../services/apis";
-import { ACCOUNT_TYPE } from "../../utils/constant"
-import ProfileDropdown from "../core/Auth/ProfileDropdown"
+import { ACCOUNT_TYPE } from "../../utils/constant";
+import ProfileDropdown from "../core/Auth/ProfileDropdown";
 
 function Navbar() {
 	const { token } = useSelector((state) => state.auth);
@@ -29,13 +29,13 @@ function Navbar() {
 				const res = await apiConnector("GET", categories.CATEGORIES_API);
 				setSubLinks(res.data.data);
 			} catch (error) {
-				// console.log("Could not fetch Categories.", error);
+				console.log("Could not fetch Categories.", error);
 			}
 			setLoading(false);
 		})();
 	}, []);
 
-	// // console.log("sub links", subLinks)
+	// console.log("sub links", subLinks)
 
 	const matchRoute = (route) => {
 		return matchPath({ path: route }, location.pathname);

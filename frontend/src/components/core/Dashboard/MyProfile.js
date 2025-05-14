@@ -13,9 +13,9 @@ export default function MyProfile() {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		// console.log("Printing user in profile!");
-		// console.log(user);
-		// console.log(user?.additionalDetails);
+		console.log("Printing user in profile!");
+		console.log(user);
+		console.log(user?.additionalDetails);
 	}, [user]);
 
 	return (

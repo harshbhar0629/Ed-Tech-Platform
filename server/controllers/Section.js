@@ -48,7 +48,7 @@ exports.createSection = async (req, res) => {
 		//
 	} catch (error) {
 		// Handle errors
-		// console.log(error.message);
+		console.log(error.message);
 		res.status(500).json({
 			success: false,
 			message: "Internal server error",
@@ -76,7 +76,7 @@ exports.updateSection = async (req, res) => {
 			})
 			.exec();
 
-		// console.log(course);
+		console.log(course);
 		res.status(200).json({
 			success: true,
 			message: section,
@@ -84,7 +84,7 @@ exports.updateSection = async (req, res) => {
 		});
 		//
 	} catch (error) {
-		// console.log("Error updating section:\n", error.message);
+		console.log("Error updating section:\n", error.message);
 		res.status(500).json({
 			success: false,
 			message: "Internal server error",
@@ -104,7 +104,7 @@ exports.deleteSection = async (req, res) => {
 		});
 
 		const section = await Section.findById(sectionId);
-		// console.log(sectionId, courseId);
+		console.log(sectionId, courseId);
 		if (!section) {
 			return res.status(404).json({
 				success: false,
@@ -138,7 +138,7 @@ exports.deleteSection = async (req, res) => {
 		});
 		//
 	} catch (error) {
-		// console.log("Error deleting section: \n", error.message);
+		console.log("Error deleting section: \n", error.message);
 		res.status(500).json({
 			success: false,
 			message: "Internal server error",
