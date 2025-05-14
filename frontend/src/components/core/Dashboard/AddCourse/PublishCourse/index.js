@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 import { editCourseDetails } from "../../../../../services/operations/courseDetailsAPI";
 import { resetCourseState, setStep } from "../../../../../slices/courseSlice";
-import { COURSE_STATUS } from "../../../../../utils/constant"
+import { COURSE_STATUS } from "../../../../../utils/constant";
 import IconBtn from "../../../../common/IconBtn";
 
 export default function PublishCourse() {
@@ -61,7 +61,7 @@ export default function PublishCourse() {
 	};
 
 	const onSubmit = (data) => {
-		// console.log(data)
+		// // console.log(data)
 		handleCoursePublish();
 	};
 

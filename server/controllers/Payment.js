@@ -27,7 +27,7 @@ exports.capturePayment = async (req, res) => {
 	}
 
 	let totalAmount = 0;
-	console.log(courses);
+	// console.log(courses);
 	for (const course_id of Object.values(courses)) {
 		let course;
 		try {
@@ -46,7 +46,7 @@ exports.capturePayment = async (req, res) => {
 			}
 			totalAmount += course.price;
 		} catch (error) {
-			console.log(error);
+			// console.log(error);
 			return res.status(500).json({
 				success: false,
 				message: error.message,
@@ -68,7 +68,7 @@ exports.capturePayment = async (req, res) => {
 			data: paymentResponse,
 		});
 	} catch (error) {
-		console.log(error);
+		// console.log(error);
 		return res.status(500).json({
 			success: false,
 			message: "Could not Intitate Order",
@@ -178,9 +178,9 @@ const enrollStudents = async (courses, userId, res) => {
 				)
 			);
 
-			// console.log("Email Sent Successfully", emailResponse.response);
+			// // console.log("Email Sent Successfully", emailResponse.response);
 		} catch (error) {
-			console.log(error);
+			// console.log(error);
 			return res.status(500).json({
 				success: false,
 				message: error.message,
@@ -214,15 +214,13 @@ exports.sendPaymentSuccessEmail = async (req, res) => {
 			)
 		);
 	} catch (error) {
-		console.log("error in sending mail", error);
+		// console.log("error in sending mail", error);
 		return res.status(500).json({
 			success: false,
 			message: "Could not send email",
 		});
 	}
 };
-
-
 
 // //Capture Payment and initiate razorpay order-> Create order
 // exports.capturePayment=async(req,res)=>{
@@ -282,10 +280,10 @@ exports.sendPaymentSuccessEmail = async (req, res) => {
 //     try{
 //       //inititate the payment using razorpay
 //       const paymentResponse=instance.orders.create(options);
-//       console.log(paymentResponse);
+//       // console.log(paymentResponse);
 //     }
 //     catch(err){
-//       console.log(error);
+//       // console.log(error);
 //       res.json({
 //         success:false,
 //         message:"Could not intitate order",
@@ -325,7 +323,7 @@ exports.sendPaymentSuccessEmail = async (req, res) => {
 
 //     //compare
 //     if(signature === digest){
-//       console.log("Payment is authorised");
+//       // console.log("Payment is authorised");
 //       const {courseId,userId}=req.body.payload.payment.entity.notes;
 
 //       try{
@@ -343,7 +341,7 @@ exports.sendPaymentSuccessEmail = async (req, res) => {
 //             message:"Course not found",
 //           });
 //         }
-//         console.log(enrolledCourse);
+//         // console.log(enrolledCourse);
 //         //find the user(student) and update his course
 //         const enrolledStudent=await User.findOneAndUpdate({_id:userId},{
 //           $push:{
@@ -356,18 +354,18 @@ exports.sendPaymentSuccessEmail = async (req, res) => {
 //             message:"Student not found",
 //           })
 //         }
-//         console.log(enrolledStudent);
+//         // console.log(enrolledStudent);
 
 //         //Now send the courseEnrolled template mail
 //          const emailResponse=await mailSender(enrolledStudent.email,"Congratulations from Tech-Treasure Hub","Congratulations,You are onboarded into new Tech-Treasure Hub Course")
-//         console.log(emailResponse);
+//         // console.log(emailResponse);
 //         return res.status(200).json({
 //           success:true,
 //           message:"Signtaure verified and Course added ",
 //         })
 //      }
 //       catch(err){
-//         console.log(err);
+//         // console.log(err);
 //         return res.status(500).json({
 //           success:false,
 //           message:err.message,

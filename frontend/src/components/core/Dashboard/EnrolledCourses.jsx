@@ -21,14 +21,14 @@ export default function EnrolledCourses() {
 
 				// Filtering the published course out
 				const filterPublishCourse = res.filter((ele) => ele.status !== "Draft");
-				// console.log(
+				// // console.log(
 				//   "Viewing all the couse that is Published",
 				//   filterPublishCourse
 				// )
 
 				setEnrolledCourses(filterPublishCourse);
 			} catch (error) {
-				console.log("Could not fetch enrolled courses.");
+				// console.log("Could not fetch enrolled courses.");
 			}
 		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -60,7 +60,6 @@ export default function EnrolledCourses() {
 								i === arr.length - 1 ? "rounded-b-lg" : "rounded-none"
 							}`}
 							key={i}>
-
 							<div
 								className="flex w-[45%] cursor-pointer items-center gap-4 px-5 py-3"
 								onClick={() => {

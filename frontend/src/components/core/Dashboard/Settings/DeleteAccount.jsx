@@ -18,7 +18,7 @@ export default function DeleteAccount() {
 		try {
 			dispatch(deleteProfile(token, navigate));
 		} catch (error) {
-			console.log("ERROR MESSAGE - ", error.message);
+			// console.log("ERROR MESSAGE - ", error.message);
 		}
 	}
 
@@ -55,9 +55,9 @@ export default function DeleteAccount() {
 						I want to delete my account?
 					</button>
 				</div>
-				{
-					confirmationModal&& <ConfirmationModal modalData={confirmationModal}/>
-				}
+				{confirmationModal && (
+					<ConfirmationModal modalData={confirmationModal} />
+				)}
 			</div>
 		</>
 	);

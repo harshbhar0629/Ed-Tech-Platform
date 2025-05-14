@@ -24,9 +24,9 @@ exports.resetPasswordToken = async (req, res) => {
 			},
 			{ new: true }
 		);
-		console.log("DETAILS: \n", updatedDetails);
+		// console.log("DETAILS: \n", updatedDetails);
 
-		const url = `http://localhost:3000/update-password/${token}`
+		const url = `http://localhost:3000/update-password/${token}`;
 
 		await mailSender(
 			email,
@@ -40,7 +40,7 @@ exports.resetPasswordToken = async (req, res) => {
 				"Email Sent Successfully, Please Check Your Email to Continue Further",
 		});
 	} catch (error) {
-		console.log(error.message);
+		// console.log(error.message);
 		return res.json({
 			error: error.message,
 			success: false,
@@ -81,7 +81,7 @@ exports.resetPassword = async (req, res) => {
 			{ password: encryptedPassword },
 			{ new: true }
 		);
-		
+
 		res.json({
 			success: true,
 			message: `Password Reset Successful`,

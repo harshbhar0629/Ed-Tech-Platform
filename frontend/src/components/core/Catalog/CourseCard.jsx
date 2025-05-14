@@ -3,17 +3,17 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import GetAvgRating from "../../../utils/avgRating";
-import RatingStars from "../../common/RatingStars"
+import RatingStars from "../../common/RatingStars";
 
 function CourseCard({ course, Height, width }) {
 	// const avgReviewCount = GetAvgRating(course.ratingAndReviews)
-	// console.log(course.ratingAndReviews)
+	// // console.log(course.ratingAndReviews)
 	const [avgReviewCount, setAvgReviewCount] = useState(0);
 	useEffect(() => {
 		const count = GetAvgRating(course.ratingAndReviews);
 		setAvgReviewCount(count);
 	}, [course]);
-	// console.log("count............", avgReviewCount)
+	// // console.log("count............", avgReviewCount)
 
 	return (
 		<>
@@ -23,7 +23,9 @@ function CourseCard({ course, Height, width }) {
 						<img
 							src={course?.thumbnail}
 							alt="course thumnail"
-							className={`${Height} ${width? `w-[${width}%]` : "w-full"} rounded-xl object-fit`}
+							className={`${Height} ${
+								width ? `w-[${width}%]` : "w-full"
+							} rounded-xl object-fit`}
 						/>
 					</div>
 					<div className="flex flex-col gap-2 px-1 py-3">

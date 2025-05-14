@@ -68,7 +68,7 @@ exports.updateProfile = async (req, res) => {
 		});
 		//
 	} catch (error) {
-		console.log(error.message);
+		// console.log(error.message);
 		return res.status(500).json({
 			success: false,
 			error: error.message,
@@ -79,7 +79,7 @@ exports.updateProfile = async (req, res) => {
 exports.deleteAccount = async (req, res) => {
 	try {
 		const id = req.user.id;
-		console.log(id);
+		// console.log(id);
 		const user = await User.findById({ _id: id });
 		if (!user) {
 			return res.status(404).json({
@@ -112,7 +112,7 @@ exports.deleteAccount = async (req, res) => {
 		await CourseProgress.deleteMany({ userId: id });
 		//
 	} catch (error) {
-		console.log(error.message);
+		// console.log(error.message);
 		res.status(500).json({
 			success: false,
 			message: "User Cannot be deleted successfully",
@@ -127,7 +127,7 @@ exports.getAllUserDetails = async (req, res) => {
 			.populate("additionalDetails")
 			.exec();
 
-		console.log(userDetails);
+		// console.log(userDetails);
 
 		res.status(200).json({
 			success: true,
@@ -135,7 +135,7 @@ exports.getAllUserDetails = async (req, res) => {
 			data: userDetails,
 		});
 	} catch (error) {
-		console.log(error.message);
+		// console.log(error.message);
 		return res.status(500).json({
 			success: false,
 			message: error.message,
@@ -145,7 +145,7 @@ exports.getAllUserDetails = async (req, res) => {
 
 exports.updateDisplayPicture = async (req, res) => {
 	try {
-		console.log("inside update display picture!");
+		// console.log("inside update display picture!");
 		const displayPicture = req.files.displayPicture;
 		const userId = req.user.id;
 		const image = await uploadImageToCloudinary(
@@ -153,7 +153,7 @@ exports.updateDisplayPicture = async (req, res) => {
 			process.env.FOLDER_NAME
 		);
 
-		console.log(image);
+		// console.log(image);
 		const updatedProfile = await User.findByIdAndUpdate(
 			{ _id: userId },
 			{ image: image.secure_url },
@@ -166,7 +166,7 @@ exports.updateDisplayPicture = async (req, res) => {
 			data: updatedProfile,
 		});
 	} catch (error) {
-		console.log(error.message);
+		// console.log(error.message);
 		return res.status(500).json({
 			success: false,
 			msg: "Error in updateDisplayPicture!",
@@ -237,7 +237,7 @@ exports.getEnrolledCourses = async (req, res) => {
 			data: userDetails.courses,
 		});
 	} catch (error) {
-		console.log(error.message);
+		// console.log(error.message);
 		return res.status(500).json({
 			success: false,
 			message: error.message,
@@ -268,7 +268,7 @@ exports.instructorDashboard = async (req, res) => {
 
 		res.status(200).json({ courses: courseData });
 	} catch (error) {
-		console.log(error.message);
+		// console.log(error.message);
 		res.status(500).json({
 			success: false,
 			message: "Server Error",

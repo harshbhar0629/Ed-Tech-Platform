@@ -18,7 +18,7 @@ import {
 	deleteCourse,
 	fetchInstructorCourses,
 } from "../../../../services/operations/courseDetailsAPI";
-import { COURSE_STATUS } from "../../../../utils/constant.js"
+import { COURSE_STATUS } from "../../../../utils/constant.js";
 import ConfirmationModal from "../../../common/ConfirmationModal";
 
 export default function CoursesTable({ courses, setCourses }) {
@@ -40,7 +40,7 @@ export default function CoursesTable({ courses, setCourses }) {
 		setLoading(false);
 	};
 
-	// console.log("All Course ", courses)
+	// // console.log("All Course ", courses)
 
 	return (
 		<>

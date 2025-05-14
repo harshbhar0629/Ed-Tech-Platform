@@ -28,12 +28,12 @@ export default function CourseReviewModal({ setReviewModal }) {
 	}, []);
 
 	const ratingChanged = (newRating) => {
-		// console.log(newRating)
+		// // console.log(newRating)
 		setValue("courseRating", newRating);
 	};
 
 	const onSubmit = async (data) => {
-		console.log(
+		// console.log(
 			courseEntireData._id,
 			"\n",
 			data.courseRating,

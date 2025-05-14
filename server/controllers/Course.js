@@ -12,7 +12,7 @@ const { convertSecondsToDuration } = require("../utils/secToDuration");
 // Function to create a new course
 exports.createCourse = async (req, res) => {
 	try {
-		console.log("Inside course!");
+		// console.log("Inside course!");
 		// Get user ID from request object
 		const userId = req.user.id;
 
@@ -25,14 +25,13 @@ exports.createCourse = async (req, res) => {
 			tag,
 			category,
 			status,
-			instructions
+			instructions,
 		} = req.body;
 		// Get thumbnail image from request files
 		const thumbnail = req.files.thumbnailImage;
 
-
-		console.log("Tag and Instructions\n");
-		console.log(tag, "\n", instructions);
+		// console.log("Tag and Instructions\n");
+		// console.log(tag, "\n", instructions);
 
 		// Check if any of the required fields are missing
 		if (
@@ -81,7 +80,7 @@ exports.createCourse = async (req, res) => {
 			thumbnail,
 			process.env.FOLDER_NAME
 		);
-		console.log(thumbnailImage);
+		// console.log(thumbnailImage);
 
 		// Create a new course with the given details
 		const newCourse = await Course.create({
@@ -120,7 +119,7 @@ exports.createCourse = async (req, res) => {
 			},
 			{ new: true }
 		);
-		console.log("Category details: \n", categoryDetails2);
+		// console.log("Category details: \n", categoryDetails2);
 
 		// Return the new course and a success message
 		res.status(200).json({
@@ -128,10 +127,10 @@ exports.createCourse = async (req, res) => {
 			data: newCourse,
 			message: "Course Created Successfully",
 		});
-		// 
+		//
 	} catch (error) {
 		// Handle any errors that occur during the creation of the course
-		console.log(error.message);
+		// console.log(error.message);
 		res.status(500).json({
 			success: false,
 			message: "Failed to create course!",
@@ -143,8 +142,8 @@ exports.createCourse = async (req, res) => {
 // Edit Course Details
 exports.editCourse = async (req, res) => {
 	try {
-		// 
-		console.log("Inside edit course!");
+		//
+		// console.log("Inside edit course!");
 		const { courseId } = req.body;
 		const updates = req.body;
 		const course = await Course.findById(courseId);
@@ -155,7 +154,7 @@ exports.editCourse = async (req, res) => {
 
 		// If Thumbnail Image is found, update it
 		if (req.files) {
-			console.log("thumbnail update");
+			// console.log("thumbnail update");
 			const thumbnail = req.files.thumbnailImage;
 			const thumbnailImage = await uploadImageToCloudinary(
 				thumbnail,
@@ -202,7 +201,7 @@ exports.editCourse = async (req, res) => {
 			data: updatedCourse,
 		});
 	} catch (error) {
-		console.log(error.message);
+		// console.log(error.message);
 		res.status(500).json({
 			success: false,
 			message: "Internal server error",
@@ -232,7 +231,7 @@ exports.getAllCourses = async (req, res) => {
 			data: allCourses,
 		});
 	} catch (error) {
-		console.log(error.message);
+		// console.log(error.message);
 		return res.status(404).json({
 			success: false,
 			message: `Can't Fetch Course Data`,
@@ -263,7 +262,7 @@ exports.getAllCourses = async (req, res) => {
 //         },
 //       })
 //       .exec()
-//     // console.log(
+//     // // console.log(
 //     //   "###################################### course details : ",
 //     //   courseDetails,
 //     //   courseId
@@ -349,7 +348,7 @@ exports.getCourseDetails = async (req, res) => {
 			},
 		});
 	} catch (error) {
-		console.log(error.message)
+		// console.log(error.message)
 		return res.status(500).json({
 			success: false,
 			message: error.message,
@@ -386,7 +385,7 @@ exports.getFullCourseDetails = async (req, res) => {
 			userId: userId,
 		});
 
-		console.log("courseProgressCount : ", courseProgressCount);
+		// console.log("courseProgressCount : ", courseProgressCount);
 
 		if (!courseDetails) {
 			return res.status(400).json({
@@ -423,7 +422,7 @@ exports.getFullCourseDetails = async (req, res) => {
 			},
 		});
 	} catch (error) {
-		console.log(error.message)
+		// console.log(error.message)
 		return res.status(500).json({
 			success: false,
 			message: error.message,
@@ -448,7 +447,7 @@ exports.getInstructorCourses = async (req, res) => {
 			data: instructorCourses,
 		});
 	} catch (error) {
-		console.log(error.message);
+		// console.log(error.message);
 		res.status(500).json({
 			success: false,
 			message: "Failed to retrieve instructor courses",
@@ -461,13 +460,13 @@ exports.getInstructorCourses = async (req, res) => {
 exports.deleteCourse = async (req, res) => {
 	try {
 		const { courseId } = req.body;
-		console.log("Delte course inside...")
+		// console.log("Delte course inside...")
 		// Find the course
 		const course = await Course.findById(courseId);
 		if (!course) {
 			return res.status(404).json({
 				sucess: false,
-				message: "Course not found"
+				message: "Course not found",
 			});
 		}
 
@@ -503,7 +502,7 @@ exports.deleteCourse = async (req, res) => {
 			message: "Course deleted successfully",
 		});
 	} catch (error) {
-		console.log(error.message);
+		// console.log(error.message);
 		return res.status(500).json({
 			success: false,
 			message: "Server error",
