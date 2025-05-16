@@ -57,13 +57,17 @@ export async function buyCourse(
 				Authorization: `Bearer ${token}`,
 			}
 		);
+		console.log("order ka res")
+		console.log(orderResponse);
 
 		if (!orderResponse.data.success) {
 			throw new Error(orderResponse.data.message);
 		}
 
+		console.log(process.env.REACT_APP_RAZORPAY_KEY);
+
 		const options = {
-			key: process.env.RAZORPAY_KEY,
+			key: "rzp_test_LJdHoaj3jLQ01x",
 			currency: orderResponse?.data?.data.currency,
 			amount: `${orderResponse?.data?.data?.amount}`,
 			order_id: orderResponse?.data?.data.id,

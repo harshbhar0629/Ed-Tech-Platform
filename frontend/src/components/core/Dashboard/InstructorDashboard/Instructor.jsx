@@ -19,8 +19,10 @@ export default function Instructor() {
 			setLoading(true);
 			const instructorApiData = await getInstructorData(token);
 			const result = await fetchInstructorCourses(token);
+			console.log("output")
+			console.log(result)
 			console.log(instructorApiData);
-			if (instructorApiData.length) setInstructorData(instructorApiData);
+			if (instructorApiData?.length) setInstructorData(instructorApiData);
 			if (result) {
 				setCourses(result);
 			}
@@ -50,7 +52,7 @@ export default function Instructor() {
 			</div>
 			{loading ? (
 				<div className="spinner"></div>
-			) : courses.length > 0 ? (
+			) : courses?.length > 0 ? (
 				<div>
 					<div className="my-4 flex h-[450px] space-x-4">
 						{/* Render chart / graph */}
@@ -103,23 +105,23 @@ export default function Instructor() {
 									key={course._id}
 									className="w-1/3">
 									<img
-										src={course.thumbnail}
-										alt={course.courseName}
+										src={course?.thumbnail}
+										alt={course?.courseName}
 										className="h-[201px] w-full rounded-md object-cover"
 									/>
 									<div className="mt-3 w-full">
 										<p className="text-sm font-medium text-richblack-50">
-											{course.courseName}
+											{course?.courseName}
 										</p>
 										<div className="mt-1 flex items-center space-x-2">
 											<p className="text-xs font-medium text-richblack-300">
-												{course.studentsEnroled.length} students
+												{course?.studentsEnrolled?.length || 0} students
 											</p>
 											<p className="text-xs font-medium text-richblack-300">
 												|
 											</p>
 											<p className="text-xs font-medium text-richblack-300">
-												Rs. {course.price}
+												Rs. {course?.price}
 											</p>
 										</div>
 									</div>
