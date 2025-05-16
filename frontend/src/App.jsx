@@ -22,7 +22,7 @@ import EditCourse from "./components/core/Dashboard/EditCourse";
 import EnrolledCourses from "./components/core/Dashboard/EnrolledCourses.jsx";
 import Cart from "./components/core/Dashboard/Cart";
 import AddCourse from "./components/core/Dashboard/AddCourse";
-import Instructor from "./components/core/Dashboard/Instructor.jsx";
+import Instructor from "./components/core/Dashboard/InstructorDashboard/Instructor.jsx"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { ACCOUNT_TYPE } from "./utils/constant.js";

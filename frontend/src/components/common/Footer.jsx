@@ -176,7 +176,7 @@ const Footer = () => {
 					</div>
 
 					<div className="text-center">
-						Made with ❤️ © 2023 TechTreasure-Hub
+						Made with ❤️ © 2025 TechTreasure-Hub
 					</div>
 				</div>
 			</div>
