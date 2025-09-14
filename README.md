@@ -107,7 +107,7 @@ npm install
 
 Download dependency for frontend
 ```
-cd ../backend
+cd ../server
 npm install
 ```
 
