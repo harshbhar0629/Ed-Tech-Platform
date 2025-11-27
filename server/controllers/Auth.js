@@ -41,12 +41,12 @@ exports.signup = async (req, res) => {
 			});
 		}
 
-		if (!email.includes("@gmail.com")) {
-			return res.status(400).send({
-				success: false,
-				message: "Invalid Email!",
-			});
-		}
+		// if (!email.includes("@gmail.com")) {
+		// 	return res.status(400).send({
+		// 		success: false,
+		// 		message: "Invalid Email!",
+		// 	});
+		// }
 
 		// Check if password and confirm password match or not
 		if (password !== confirmPassword) {
